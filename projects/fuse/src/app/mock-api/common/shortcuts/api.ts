@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { assign, cloneDeep } from 'lodash-es';
-import { FuseMockApiService, FuseMockApiUtils } from '@fuse/lib/mock-api';
-import { shortcuts as shortcutsData } from 'app/mock-api/common/shortcuts/data';
+import { FuseMockApiService, FuseMockApiUtils } from 'libs/fuse-lib/src/lib/lib/mock-api';
+import { shortcuts as shortcutsData } from 'projects/fuse/src/app/mock-api/common/shortcuts/data';
 
 @Injectable({
     providedIn: 'root'

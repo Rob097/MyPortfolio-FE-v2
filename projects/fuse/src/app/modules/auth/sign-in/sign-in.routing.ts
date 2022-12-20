@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { AuthSignInComponent } from 'app/modules/auth/sign-in/sign-in.component';
+import { AuthSignInComponent } from 'projects/fuse/src/app/modules/auth/sign-in/sign-in.component';
 
 export const authSignInRoutes: Route[] = [
     {

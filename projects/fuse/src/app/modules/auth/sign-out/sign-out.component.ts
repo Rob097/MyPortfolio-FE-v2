@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize, Subject, takeUntil, takeWhile, tap, timer } from 'rxjs';
-import { AuthService } from 'app/core/auth/auth.service';
+import { AuthService } from 'projects/fuse/src/app/core/auth/auth.service';
 
 @Component({
     selector     : 'auth-sign-out',

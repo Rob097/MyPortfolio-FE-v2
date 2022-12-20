@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { FuseMockApiService } from '@fuse/lib/mock-api';
-import { crypto as cryptoData } from 'app/mock-api/dashboards/crypto/data';
+import { FuseMockApiService } from 'libs/fuse-lib/src/lib/lib/mock-api';
+import { crypto as cryptoData } from 'projects/fuse/src/app/mock-api/dashboards/crypto/data';
 
 @Injectable({
     providedIn: 'root'

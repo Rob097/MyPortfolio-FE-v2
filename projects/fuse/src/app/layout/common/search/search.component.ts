@@ -3,7 +3,7 @@ import { UntypedFormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { debounceTime, filter, map, Subject, takeUntil } from 'rxjs';
-import { fuseAnimations } from '@fuse/animations/public-api';
+import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations/public-api';
 
 @Component({
     selector     : 'search',

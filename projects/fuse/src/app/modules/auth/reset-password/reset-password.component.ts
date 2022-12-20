@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { fuseAnimations } from '@fuse/animations';
-import { FuseValidators } from '@fuse/validators';
-import { FuseAlertType } from '@fuse/components/alert';
-import { AuthService } from 'app/core/auth/auth.service';
+import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
+import { FuseValidators } from 'libs/fuse-lib/src/lib/validators';
+import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
+import { AuthService } from 'projects/fuse/src/app/core/auth/auth.service';
 
 @Component({
     selector     : 'auth-reset-password',

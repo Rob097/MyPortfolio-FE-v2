@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
-import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
-import { Navigation } from 'app/core/navigation/navigation.types';
-import { NavigationService } from 'app/core/navigation/navigation.service';
-import { User } from 'app/core/user/user.types';
-import { UserService } from 'app/core/user/user.service';
+import { FuseMediaWatcherService } from 'libs/fuse-lib/src/lib/services/media-watcher';
+import { FuseNavigationService, FuseVerticalNavigationComponent } from 'libs/fuse-lib/src/lib/components/navigation';
+import { Navigation } from 'projects/fuse/src/app/core/navigation/navigation.types';
+import { NavigationService } from 'projects/fuse/src/app/core/navigation/navigation.service';
+import { User } from 'projects/fuse/src/app/core/user/user.types';
+import { UserService } from 'projects/fuse/src/app/core/user/user.service';
 
 @Component({
     selector     : 'classy-layout',

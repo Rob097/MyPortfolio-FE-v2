@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
-import { FuseNavigationItem, FuseNavigationService } from '@fuse/components/navigation';
-import { FuseMockApiService } from '@fuse/lib/mock-api';
-import { defaultNavigation } from 'app/mock-api/common/navigation/data';
-import { contacts } from 'app/mock-api/apps/contacts/data';
-import { tasks } from 'app/mock-api/apps/tasks/data';
+import { FuseNavigationItem, FuseNavigationService } from 'libs/fuse-lib/src/lib/components/navigation';
+import { FuseMockApiService } from 'libs/fuse-lib/src/lib/lib/mock-api';
+import { defaultNavigation } from 'projects/fuse/src/app/mock-api/common/navigation/data';
+import { contacts } from 'projects/fuse/src/app/mock-api/apps/contacts/data';
+import { tasks } from 'projects/fuse/src/app/mock-api/apps/tasks/data';
 
 @Injectable({
     providedIn: 'root'

@@ -5,18 +5,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { FuseFullscreenModule } from '@fuse/components/fullscreen';
-import { FuseLoadingBarModule } from '@fuse/components/loading-bar';
-import { FuseNavigationModule } from '@fuse/components/navigation';
-import { LanguagesModule } from 'app/layout/common/languages/languages.module';
-import { MessagesModule } from 'app/layout/common/messages/messages.module';
-import { NotificationsModule } from 'app/layout/common/notifications/notifications.module';
-import { QuickChatModule } from 'app/layout/common/quick-chat/quick-chat.module';
-import { SearchModule } from 'app/layout/common/search/search.module';
-import { ShortcutsModule } from 'app/layout/common/shortcuts/shortcuts.module';
-import { UserModule } from 'app/layout/common/user/user.module';
-import { SharedModule } from 'app/shared/shared.module';
-import { ThinLayoutComponent } from 'app/layout/layouts/vertical/thin/thin.component';
+import { FuseFullscreenModule } from 'libs/fuse-lib/src/lib/components/fullscreen';
+import { FuseLoadingBarModule } from 'libs/fuse-lib/src/lib/components/loading-bar';
+import { FuseNavigationModule } from 'libs/fuse-lib/src/lib/components/navigation';
+import { LanguagesModule } from 'projects/fuse/src/app/layout/common/languages/languages.module';
+import { MessagesModule } from 'projects/fuse/src/app/layout/common/messages/messages.module';
+import { NotificationsModule } from 'projects/fuse/src/app/layout/common/notifications/notifications.module';
+import { QuickChatModule } from 'projects/fuse/src/app/layout/common/quick-chat/quick-chat.module';
+import { SearchModule } from 'projects/fuse/src/app/layout/common/search/search.module';
+import { ShortcutsModule } from 'projects/fuse/src/app/layout/common/shortcuts/shortcuts.module';
+import { UserModule } from 'projects/fuse/src/app/layout/common/user/user.module';
+import { SharedModule } from 'projects/fuse/src/app/shared/shared.module';
+import { ThinLayoutComponent } from 'projects/fuse/src/app/layout/layouts/vertical/thin/thin.component';
 
 @NgModule({
     declarations: [

@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
-import { LayoutComponent } from 'app/layout/layout.component';
-import { EmptyLayoutModule } from 'app/layout/layouts/empty/empty.module';
-import { CenteredLayoutModule } from 'app/layout/layouts/horizontal/centered/centered.module';
-import { EnterpriseLayoutModule } from 'app/layout/layouts/horizontal/enterprise/enterprise.module';
-import { MaterialLayoutModule } from 'app/layout/layouts/horizontal/material/material.module';
-import { ModernLayoutModule } from 'app/layout/layouts/horizontal/modern/modern.module';
-import { ClassicLayoutModule } from 'app/layout/layouts/vertical/classic/classic.module';
-import { ClassyLayoutModule } from 'app/layout/layouts/vertical/classy/classy.module';
-import { CompactLayoutModule } from 'app/layout/layouts/vertical/compact/compact.module';
-import { DenseLayoutModule } from 'app/layout/layouts/vertical/dense/dense.module';
-import { FuturisticLayoutModule } from 'app/layout/layouts/vertical/futuristic/futuristic.module';
-import { ThinLayoutModule } from 'app/layout/layouts/vertical/thin/thin.module';
-import { SettingsModule } from 'app/layout/common/settings/settings.module';
-import { SharedModule } from 'app/shared/shared.module';
+import { LayoutComponent } from 'projects/fuse/src/app/layout/layout.component';
+import { EmptyLayoutModule } from 'projects/fuse/src/app/layout/layouts/empty/empty.module';
+import { CenteredLayoutModule } from 'projects/fuse/src/app/layout/layouts/horizontal/centered/centered.module';
+import { EnterpriseLayoutModule } from 'projects/fuse/src/app/layout/layouts/horizontal/enterprise/enterprise.module';
+import { MaterialLayoutModule } from 'projects/fuse/src/app/layout/layouts/horizontal/material/material.module';
+import { ModernLayoutModule } from 'projects/fuse/src/app/layout/layouts/horizontal/modern/modern.module';
+import { ClassicLayoutModule } from 'projects/fuse/src/app/layout/layouts/vertical/classic/classic.module';
+import { ClassyLayoutModule } from 'projects/fuse/src/app/layout/layouts/vertical/classy/classy.module';
+import { CompactLayoutModule } from 'projects/fuse/src/app/layout/layouts/vertical/compact/compact.module';
+import { DenseLayoutModule } from 'projects/fuse/src/app/layout/layouts/vertical/dense/dense.module';
+import { FuturisticLayoutModule } from 'projects/fuse/src/app/layout/layouts/vertical/futuristic/futuristic.module';
+import { ThinLayoutModule } from 'projects/fuse/src/app/layout/layouts/vertical/thin/thin.module';
+import { SettingsModule } from 'projects/fuse/src/app/layout/common/settings/settings.module';
+import { SharedModule } from 'projects/fuse/src/app/shared/shared.module';
 
 const layoutModules = [
     // Empty

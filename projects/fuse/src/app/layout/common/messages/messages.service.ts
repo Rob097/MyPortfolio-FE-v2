@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, ReplaySubject, switchMap, take, tap } from 'rxjs';
-import { Message } from 'app/layout/common/messages/messages.types';
+import { Message } from 'projects/fuse/src/app/layout/common/messages/messages.types';
 
 @Injectable({
     providedIn: 'root'

@@ -1,5 +1,5 @@
 /* tslint:disable:max-line-length */
-import { FuseNavigationItem } from '@fuse/components/navigation';
+import { FuseNavigationItem } from 'libs/fuse-lib/src/lib/components/navigation';
 
 export const defaultNavigation: FuseNavigationItem[] = [
     {

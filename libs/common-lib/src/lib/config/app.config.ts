@@ -1,4 +1,4 @@
-import { Layout } from 'projects/fuse/src/app/layout/layout.types';
+import { Layout } from 'libs/common-lib/src/lib/config/layout.types';
 
 // Types
 export type Scheme = 'auto' | 'dark' | 'light';

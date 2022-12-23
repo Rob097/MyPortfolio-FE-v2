@@ -1,3 +1,3 @@
 module.exports = {
-    rootTranslationsPath: 'projects/fuse/src/assets/i18n/'
+    rootTranslationsPath: 'libs/translation-lib/src/assets/i18n/'
 };

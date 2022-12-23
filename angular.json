@@ -46,6 +46,31 @@
                 "glob": "_redirects",
                 "input": "src",
                 "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/translation-lib/src/assets/i18n",
+                "output": "./assets/i18n/"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/common-lib/src/assets/fonts",
+                "output": "./assets/fonts/"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/common-lib/src/assets/images",
+                "output": "./assets/images/"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/common-lib/src/assets/icons",
+                "output": "./assets/icons/"
+              },
+              {
+                "glob": "**/*",
+                "input": "libs/common-lib/src/assets/styles",
+                "output": "./assets/styles/"
               }
             ],
             "stylePreprocessorOptions": {
@@ -188,6 +213,126 @@
             "lintFilePatterns": [
               "libs/fuse-lib/**/*.ts",
               "libs/fuse-lib/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "auth-lib": {
+      "projectType": "library",
+      "root": "libs/auth-lib",
+      "sourceRoot": "libs/auth-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "libs/auth-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/auth-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/auth-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/auth-lib/src/test.ts",
+            "tsConfig": "libs/auth-lib/tsconfig.spec.json",
+            "karmaConfig": "libs/auth-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/auth-lib/**/*.ts",
+              "libs/auth-lib/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "translation-lib": {
+      "projectType": "library",
+      "root": "libs/translation-lib",
+      "sourceRoot": "libs/translation-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "libs/translation-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/translation-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/translation-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/translation-lib/src/test.ts",
+            "tsConfig": "libs/translation-lib/tsconfig.spec.json",
+            "karmaConfig": "libs/translation-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/translation-lib/**/*.ts",
+              "libs/translation-lib/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "common-lib": {
+      "projectType": "library",
+      "root": "libs/common-lib",
+      "sourceRoot": "libs/common-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "libs/common-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/common-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/common-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/common-lib/src/test.ts",
+            "tsConfig": "libs/common-lib/tsconfig.spec.json",
+            "karmaConfig": "libs/common-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/common-lib/**/*.ts",
+              "libs/common-lib/**/*.html"
             ]
           }
         }

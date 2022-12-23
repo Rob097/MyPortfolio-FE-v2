@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FuseCardModule } from 'libs/fuse-lib/src/lib/components/card';
 import { FuseAlertModule } from 'libs/fuse-lib/src/lib/components/alert';
-import { SharedModule } from 'projects/fuse/src/app/shared/shared.module';
+import { SharedModule } from 'libs/common-lib/src/lib/shared.module';
 import { AuthResetPasswordComponent } from 'projects/fuse/src/app/modules/auth/reset-password/reset-password.component';
 import { authResetPasswordRoutes } from 'projects/fuse/src/app/modules/auth/reset-password/reset-password.routing';
 

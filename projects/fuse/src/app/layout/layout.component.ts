@@ -6,8 +6,8 @@ import { FuseConfigService } from 'libs/fuse-lib/src/lib/services/config';
 import { FuseMediaWatcherService } from 'libs/fuse-lib/src/lib/services/media-watcher';
 import { FusePlatformService } from 'libs/fuse-lib/src/lib/services/platform';
 import { FUSE_VERSION } from 'libs/fuse-lib/src/lib/version';
-import { Layout } from 'projects/fuse/src/app/layout/layout.types';
-import { AppConfig } from 'projects/fuse/src/app/core/config/app.config';
+import { Layout } from 'libs/common-lib/src/lib/config/layout.types';
+import { AppConfig } from 'libs/common-lib/src/lib/config/app.config';
 
 @Component({
     selector     : 'layout',

@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
-import { AuthService } from 'projects/fuse/src/app/core/auth/auth.service';
-import { UserService } from 'projects/fuse/src/app/core/user/user.service';
+import { AuthService } from 'libs/auth-lib/src/lib/auth.service';
+import { UserService } from 'libs/auth-lib/src/lib/user/user.service';
 import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
 
 @Component({

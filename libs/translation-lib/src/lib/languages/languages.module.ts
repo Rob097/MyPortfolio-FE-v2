@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { LanguagesComponent } from 'projects/fuse/src/app/layout/common/languages/languages.component';
-import { SharedModule } from 'projects/fuse/src/app/shared/shared.module';
+import { LanguagesComponent } from 'libs/translation-lib/src/lib/languages/languages.component';
+import { SharedModule } from 'libs/translation-lib/src/lib/shared.module';
 
 @NgModule({
     declarations: [

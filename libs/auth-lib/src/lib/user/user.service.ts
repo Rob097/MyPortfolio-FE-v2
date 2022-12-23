@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, ReplaySubject, tap } from 'rxjs';
-import { User } from 'projects/fuse/src/app/core/user/user.types';
+import { User } from 'libs/auth-lib/src/lib/user/user.types';
 
 @Injectable({
     providedIn: 'root'
@@ -26,15 +26,14 @@ export class UserService
      *
      * @param value
      */
+    get user$(): Observable<User>
+    {
+        return this._user.asObservable();
+    }
     set user(value: User)
     {
         // Store the value
         this._user.next(value);
-    }
-
-    get user$(): Observable<User>
-    {
-        return this._user.asObservable();
     }
 
     // -----------------------------------------------------------------------------------------------------

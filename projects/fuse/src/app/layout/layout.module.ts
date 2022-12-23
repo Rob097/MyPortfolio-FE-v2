@@ -12,7 +12,7 @@ import { DenseLayoutModule } from 'projects/fuse/src/app/layout/layouts/vertical
 import { FuturisticLayoutModule } from 'projects/fuse/src/app/layout/layouts/vertical/futuristic/futuristic.module';
 import { ThinLayoutModule } from 'projects/fuse/src/app/layout/layouts/vertical/thin/thin.module';
 import { SettingsModule } from 'projects/fuse/src/app/layout/common/settings/settings.module';
-import { SharedModule } from 'projects/fuse/src/app/shared/shared.module';
+import { SharedModule } from 'libs/common-lib/src/lib/shared.module';
 
 const layoutModules = [
     // Empty

@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { AuthGuard } from 'projects/fuse/src/app/core/auth/guards/auth.guard';
-import { NoAuthGuard } from 'projects/fuse/src/app/core/auth/guards/noAuth.guard';
+import { AuthGuard } from 'libs/auth-lib/src/lib/guards/auth.guard';
+import { NoAuthGuard } from 'libs/auth-lib/src/lib/guards/noAuth.guard';
 import { LayoutComponent } from 'projects/fuse/src/app/layout/layout.component';
 import { InitialDataResolver } from 'projects/fuse/src/app/app.resolvers';
 

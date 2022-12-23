@@ -4,7 +4,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { UserComponent } from 'projects/fuse/src/app/layout/common/user/user.component';
-import { SharedModule } from 'projects/fuse/src/app/shared/shared.module';
+import { SharedModule } from 'libs/common-lib/src/lib/shared.module';
 
 @NgModule({
     declarations: [

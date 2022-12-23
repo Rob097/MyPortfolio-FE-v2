@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
-import { AuthUtils } from 'projects/fuse/src/app/core/auth/auth.utils';
-import { UserService } from 'projects/fuse/src/app/core/user/user.service';
+import { AuthUtils } from 'libs/auth-lib/src/lib/auth.utils';
+import { UserService } from 'libs/auth-lib/src/lib/user/user.service';
 
 @Injectable()
 export class AuthService
@@ -26,14 +26,13 @@ export class AuthService
     /**
      * Setter & getter for access token
      */
-    set accessToken(token: string)
-    {
-        localStorage.setItem('accessToken', token);
-    }
-
     get accessToken(): string
     {
         return localStorage.getItem('accessToken') ?? '';
+    }
+    set accessToken(token: string)
+    {
+        localStorage.setItem('accessToken', token);
     }
 
     // -----------------------------------------------------------------------------------------------------

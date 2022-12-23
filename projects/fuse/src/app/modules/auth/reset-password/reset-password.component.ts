@@ -4,7 +4,7 @@ import { finalize } from 'rxjs';
 import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
 import { FuseValidators } from 'libs/fuse-lib/src/lib/validators';
 import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
-import { AuthService } from 'projects/fuse/src/app/core/auth/auth.service';
+import { AuthService } from 'libs/auth-lib/src/lib/auth.service';
 
 @Component({
     selector     : 'auth-reset-password',

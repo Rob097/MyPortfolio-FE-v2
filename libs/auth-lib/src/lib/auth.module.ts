@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthService } from 'projects/fuse/src/app/core/auth/auth.service';
-import { AuthInterceptor } from 'projects/fuse/src/app/core/auth/auth.interceptor';
+import { AuthService } from 'libs/auth-lib/src/lib/auth.service';
+import { AuthInterceptor } from 'libs/auth-lib/src/lib/auth.interceptor';
 
 @NgModule({
     imports  : [

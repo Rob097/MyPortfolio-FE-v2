@@ -1,342 +1,490 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
-  },
-  "newProjectRoot": "projects",
-  "projects": {
-    "fuse": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/fuse",
-      "sourceRoot": "projects/fuse/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "ngx-build-plus:browser",
-          "options": {
-            "outputPath": "dist/fuse",
-            "index": "projects/fuse/src/index.html",
-            "main": "projects/fuse/src/main.ts",
-            "polyfills": "projects/fuse/src/polyfills.ts",
-            "tsConfig": "projects/fuse/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "allowedCommonJsDependencies": [
-              "apexcharts",
-              "highlight.js",
-              "crypto-js/enc-utf8",
-              "crypto-js/hmac-sha256",
-              "crypto-js/enc-base64",
-              "flat",
-              "moment",
-              "quill"
-            ],
-            "assets": [
-              "projects/fuse/src/favicon-16x16.png",
-              "projects/fuse/src/favicon-32x32.png",
-              "projects/fuse/src/assets",
-              {
-                "glob": "_redirects",
-                "input": "src",
-                "output": "/"
-              },
-              {
-                "glob": "**/*",
-                "input": "libs/translation-lib/src/assets/i18n",
-                "output": "./assets/i18n/"
-              },
-              {
-                "glob": "**/*",
-                "input": "libs/common-lib/src/assets/fonts",
-                "output": "./assets/fonts/"
-              },
-              {
-                "glob": "**/*",
-                "input": "libs/common-lib/src/assets/images",
-                "output": "./assets/images/"
-              },
-              {
-                "glob": "**/*",
-                "input": "libs/common-lib/src/assets/icons",
-                "output": "./assets/icons/"
-              },
-              {
-                "glob": "**/*",
-                "input": "libs/common-lib/src/assets/styles",
-                "output": "./assets/styles/"
-              }
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "libs/fuse-lib/src/lib/styles"
-              ]
-            },
-            "styles": [
-              "libs/fuse-lib/src/lib/styles/tailwind.scss",
-              "libs/fuse-lib/src/lib/styles/themes.scss",
-              "projects/fuse/src/styles/vendors.scss",
-              "libs/fuse-lib/src/lib/styles/main.scss",
-              "projects/fuse/src/styles/styles.scss",
-              "projects/fuse/src/styles/tailwind.scss"
-            ],
-            "scripts": [],
-            "extraWebpackConfig": "projects/fuse/webpack.config.js",
-            "commonChunk": false
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "3mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "75kb",
-                  "maximumError": "90kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "projects/fuse/src/environments/environment.ts",
-                  "with": "projects/fuse/src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all",
-              "extraWebpackConfig": "projects/fuse/webpack.prod.config.js"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "ngx-build-plus:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "fuse:build:production",
-              "extraWebpackConfig": "projects/fuse/webpack.prod.config.js"
-            },
-            "development": {
-              "browserTarget": "fuse:build:development"
-            }
-          },
-          "defaultConfiguration": "development",
-          "options": {
-            "port": 4200,
-            "publicHost": "http://localhost:4200",
-            "extraWebpackConfig": "projects/fuse/webpack.config.js"
-          }
-        },
-        "extract-i18n": {
-          "builder": "ngx-build-plus:extract-i18n",
-          "options": {
-            "browserTarget": "fuse:build",
-            "extraWebpackConfig": "projects/fuse/webpack.config.js"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/fuse/src/test.ts",
-            "polyfills": "projects/fuse/src/polyfills.ts",
-            "tsConfig": "projects/fuse/tsconfig.spec.json",
-            "karmaConfig": "projects/fuse/karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/fuse/src/favicon-16x16.png",
-              "projects/fuse/src/favicon-32x32.png",
-              "projects/fuse/src/assets"
-            ],
-            "styles": [
-              "projects/fuse/src/styles/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/fuse/src/**/*.ts",
-              "projects/fuse/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "fuse-lib": {
-      "projectType": "library",
-      "root": "libs/fuse-lib",
-      "sourceRoot": "libs/fuse-lib/src",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "libs/fuse-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/fuse-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/fuse-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/fuse-lib/src/test.ts",
-            "tsConfig": "libs/fuse-lib/tsconfig.spec.json",
-            "karmaConfig": "libs/fuse-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/fuse-lib/**/*.ts",
-              "libs/fuse-lib/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "auth-lib": {
-      "projectType": "library",
-      "root": "libs/auth-lib",
-      "sourceRoot": "libs/auth-lib/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "libs/auth-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/auth-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/auth-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/auth-lib/src/test.ts",
-            "tsConfig": "libs/auth-lib/tsconfig.spec.json",
-            "karmaConfig": "libs/auth-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/auth-lib/**/*.ts",
-              "libs/auth-lib/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "translation-lib": {
-      "projectType": "library",
-      "root": "libs/translation-lib",
-      "sourceRoot": "libs/translation-lib/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "libs/translation-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/translation-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/translation-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/translation-lib/src/test.ts",
-            "tsConfig": "libs/translation-lib/tsconfig.spec.json",
-            "karmaConfig": "libs/translation-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/translation-lib/**/*.ts",
-              "libs/translation-lib/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "common-lib": {
-      "projectType": "library",
-      "root": "libs/common-lib",
-      "sourceRoot": "libs/common-lib/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "libs/common-lib/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/common-lib/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/common-lib/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/common-lib/src/test.ts",
-            "tsConfig": "libs/common-lib/tsconfig.spec.json",
-            "karmaConfig": "libs/common-lib/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/common-lib/**/*.ts",
-              "libs/common-lib/**/*.html"
-            ]
-          }
-        }
-      }
-    }
-  }
+	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+	"version": 1,
+	"cli": {
+		"schematicCollections": [
+			"@angular-eslint/schematics"
+		]
+	},
+	"newProjectRoot": "projects",
+	"projects": {
+		"fuse": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "projects/fuse",
+			"sourceRoot": "projects/fuse/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/fuse",
+						"index": "projects/fuse/src/index.html",
+						"main": "projects/fuse/src/main.ts",
+						"polyfills": "projects/fuse/src/polyfills.ts",
+						"tsConfig": "projects/fuse/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"allowedCommonJsDependencies": [
+							"apexcharts",
+							"highlight.js",
+							"crypto-js/enc-utf8",
+							"crypto-js/hmac-sha256",
+							"crypto-js/enc-base64",
+							"flat",
+							"moment",
+							"quill"
+						],
+						"assets": [
+							"projects/fuse/src/assets",
+							{
+								"glob": "_redirects",
+								"input": "src",
+								"output": "/"
+							},
+							{
+								"glob": "**/*",
+								"input": "libs/translation-lib/src/assets/i18n",
+								"output": "./assets/i18n/"
+							},
+							{
+								"glob": "**/*",
+								"input": "libs/common-lib/src/assets/fonts",
+								"output": "./assets/fonts/"
+							},
+							{
+								"glob": "**/*",
+								"input": "libs/common-lib/src/assets/images",
+								"output": "./assets/images/"
+							},
+							{
+								"glob": "**/*",
+								"input": "libs/common-lib/src/assets/icons",
+								"output": "./assets/icons/"
+							},
+							{
+								"glob": "**/*",
+								"input": "libs/common-lib/src/assets/styles",
+								"output": "./assets/styles/"
+							}
+						],
+						"stylePreprocessorOptions": {
+							"includePaths": [
+								"libs/fuse-lib/src/lib/styles"
+							]
+						},
+						"styles": [
+							"libs/fuse-lib/src/lib/styles/tailwind.scss",
+							"libs/fuse-lib/src/lib/styles/themes.scss",
+							"projects/fuse/src/styles/vendors.scss",
+							"libs/fuse-lib/src/lib/styles/main.scss",
+							"projects/fuse/src/styles/styles.scss",
+							"projects/fuse/src/styles/tailwind.scss"
+						],
+						"scripts": [],
+						"extraWebpackConfig": "projects/fuse/webpack.config.js",
+						"commonChunk": false
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "3mb",
+									"maximumError": "5mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "75kb",
+									"maximumError": "90kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "projects/fuse/src/environments/environment.ts",
+									"with": "projects/fuse/src/environments/environment.prod.ts"
+								}
+							],
+							"outputHashing": "all",
+							"extraWebpackConfig": "projects/fuse/webpack.prod.config.js"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "ngx-build-plus:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "fuse:build:production",
+							"extraWebpackConfig": "projects/fuse/webpack.prod.config.js"
+						},
+						"development": {
+							"browserTarget": "fuse:build:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4200,
+						"publicHost": "http://localhost:4200",
+						"extraWebpackConfig": "projects/fuse/webpack.config.js"
+					}
+				},
+				"extract-i18n": {
+					"builder": "ngx-build-plus:extract-i18n",
+					"options": {
+						"browserTarget": "fuse:build",
+						"extraWebpackConfig": "projects/fuse/webpack.config.js"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/fuse/src/test.ts",
+						"polyfills": "projects/fuse/src/polyfills.ts",
+						"tsConfig": "projects/fuse/tsconfig.spec.json",
+						"karmaConfig": "projects/fuse/karma.conf.js",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"projects/fuse/src/assets"
+						],
+						"styles": [
+							"projects/fuse/src/styles/styles.scss"
+						],
+						"scripts": []
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"projects/fuse/src/**/*.ts",
+							"projects/fuse/src/**/*.html"
+						]
+					}
+				}
+			}
+		},
+		"auth-mfe": {
+			"projectType": "application",
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
+			"root": "projects/auth-mfe",
+			"sourceRoot": "projects/auth-mfe/src",
+			"prefix": "app",
+			"architect": {
+				"build": {
+					"builder": "ngx-build-plus:browser",
+					"options": {
+						"outputPath": "dist/auth-mfe",
+						"index": "projects/auth-mfe/src/index.html",
+						"main": "projects/auth-mfe/src/main.ts",
+						"polyfills": "projects/auth-mfe/src/polyfills.ts",
+						"tsConfig": "projects/auth-mfe/tsconfig.app.json",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"projects/auth-mfe/src/assets",
+							{
+								"glob": "**/*",
+								"input": "libs/translation-lib/src/assets/i18n",
+								"output": "./assets/i18n/"
+							},
+							{
+								"glob": "**/*",
+								"input": "libs/common-lib/src/assets/fonts",
+								"output": "./assets/fonts/"
+							},
+							{
+								"glob": "**/*",
+								"input": "libs/common-lib/src/assets/images",
+								"output": "./assets/images/"
+							},
+							{
+								"glob": "**/*",
+								"input": "libs/common-lib/src/assets/icons",
+								"output": "./assets/icons/"
+							},
+							{
+								"glob": "**/*",
+								"input": "libs/common-lib/src/assets/styles",
+								"output": "./assets/styles/"
+							}
+						],
+                        "stylePreprocessorOptions": {
+							"includePaths": [
+								"libs/fuse-lib/src/lib/styles"
+							]
+						},
+						"styles": [
+                            "libs/fuse-lib/src/lib/styles/main.scss",
+							"projects/auth-mfe/src/styles/styles.scss",
+                            "libs/fuse-lib/src/lib/styles/tailwind.scss",
+							"libs/fuse-lib/src/lib/styles/themes.scss",
+							"projects/auth-mfe/src/styles/vendors.scss",
+							"projects/auth-mfe/src/styles/tailwind.scss"
+						],
+						"scripts": [],
+						"extraWebpackConfig": "projects/auth-mfe/webpack.config.js",
+						"commonChunk": false
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kb",
+									"maximumError": "1mb"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "2kb",
+									"maximumError": "4kb"
+								}
+							],
+							"fileReplacements": [
+								{
+									"replace": "projects/auth-mfe/src/environments/environment.ts",
+									"with": "projects/auth-mfe/src/environments/environment.prod.ts"
+								}
+							],
+							"outputHashing": "all",
+							"extraWebpackConfig": "projects/auth-mfe/webpack.prod.config.js"
+						},
+						"development": {
+							"buildOptimizer": false,
+							"optimization": false,
+							"vendorChunk": true,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"namedChunks": true
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve": {
+					"builder": "ngx-build-plus:dev-server",
+					"configurations": {
+						"production": {
+							"browserTarget": "auth-mfe:build:production",
+							"extraWebpackConfig": "projects/auth-mfe/webpack.prod.config.js"
+						},
+						"development": {
+							"browserTarget": "auth-mfe:build:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4201,
+						"publicHost": "http://localhost:4201",
+						"extraWebpackConfig": "projects/auth-mfe/webpack.config.js"
+					}
+				},
+				"extract-i18n": {
+					"builder": "ngx-build-plus:extract-i18n",
+					"options": {
+						"browserTarget": "auth-mfe:build",
+						"extraWebpackConfig": "projects/auth-mfe/webpack.config.js"
+					}
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "projects/auth-mfe/src/test.ts",
+						"polyfills": "projects/auth-mfe/src/polyfills.ts",
+						"tsConfig": "projects/auth-mfe/tsconfig.spec.json",
+						"karmaConfig": "projects/auth-mfe/karma.conf.js",
+						"inlineStyleLanguage": "scss",
+						"assets": [
+							"projects/auth-mfe/src/assets"
+						],
+						"styles": [
+							"projects/auth-mfe/src/styles.scss"
+						],
+						"scripts": []
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"projects/auth-mfe/**/*.ts",
+							"projects/auth-mfe/**/*.html"
+						]
+					}
+				}
+			}
+		},
+		"fuse-lib": {
+			"projectType": "library",
+			"root": "libs/fuse-lib",
+			"sourceRoot": "libs/fuse-lib/src",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:ng-packagr",
+					"options": {
+						"project": "libs/fuse-lib/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "libs/fuse-lib/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "libs/fuse-lib/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/fuse-lib/src/test.ts",
+						"tsConfig": "libs/fuse-lib/tsconfig.spec.json",
+						"karmaConfig": "libs/fuse-lib/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"libs/fuse-lib/**/*.ts",
+							"libs/fuse-lib/**/*.html"
+						]
+					}
+				}
+			}
+		},
+		"auth-lib": {
+			"projectType": "library",
+			"root": "libs/auth-lib",
+			"sourceRoot": "libs/auth-lib/src",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:ng-packagr",
+					"options": {
+						"project": "libs/auth-lib/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "libs/auth-lib/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "libs/auth-lib/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/auth-lib/src/test.ts",
+						"tsConfig": "libs/auth-lib/tsconfig.spec.json",
+						"karmaConfig": "libs/auth-lib/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"libs/auth-lib/**/*.ts",
+							"libs/auth-lib/**/*.html"
+						]
+					}
+				}
+			}
+		},
+		"translation-lib": {
+			"projectType": "library",
+			"root": "libs/translation-lib",
+			"sourceRoot": "libs/translation-lib/src",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:ng-packagr",
+					"options": {
+						"project": "libs/translation-lib/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "libs/translation-lib/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "libs/translation-lib/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/translation-lib/src/test.ts",
+						"tsConfig": "libs/translation-lib/tsconfig.spec.json",
+						"karmaConfig": "libs/translation-lib/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"libs/translation-lib/**/*.ts",
+							"libs/translation-lib/**/*.html"
+						]
+					}
+				}
+			}
+		},
+		"common-lib": {
+			"projectType": "library",
+			"root": "libs/common-lib",
+			"sourceRoot": "libs/common-lib/src",
+			"prefix": "lib",
+			"architect": {
+				"build": {
+					"builder": "@angular-devkit/build-angular:ng-packagr",
+					"options": {
+						"project": "libs/common-lib/ng-package.json"
+					},
+					"configurations": {
+						"production": {
+							"tsConfig": "libs/common-lib/tsconfig.lib.prod.json"
+						},
+						"development": {
+							"tsConfig": "libs/common-lib/tsconfig.lib.json"
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"test": {
+					"builder": "@angular-devkit/build-angular:karma",
+					"options": {
+						"main": "libs/common-lib/src/test.ts",
+						"tsConfig": "libs/common-lib/tsconfig.spec.json",
+						"karmaConfig": "libs/common-lib/karma.conf.js"
+					}
+				},
+				"lint": {
+					"builder": "@angular-eslint/builder:lint",
+					"options": {
+						"lintFilePatterns": [
+							"libs/common-lib/**/*.ts",
+							"libs/common-lib/**/*.html"
+						]
+					}
+				}
+			}
+		}
+	}
 }

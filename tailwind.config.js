@@ -65,7 +65,7 @@ const themes = {
  */
 const config = {
     darkMode   : 'class',
-    content    : ['projects/fuse/src/**/*.{html,scss,ts}'],
+    content    : ['projects/fuse/src/**/*.{html,scss,ts}','projects/auth-mfe/src/**/*.{html,scss,ts}'],
     important  : true,
     theme      : {
         fontSize: {

@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, ReplaySubject, tap } from 'rxjs';
 import { User } from 'libs/auth-lib/src/lib/user/user.types';
+import { Constants } from 'libs/common-lib/src/lib/config/constants';
+
+
+const USERS_API = Constants.CORE_API + '/users';
 
 @Injectable({
     providedIn: 'root'
@@ -43,13 +47,12 @@ export class UserService
     /**
      * Get the current logged in user data
      */
-    get(): Observable<User>
-    {
-        return this._httpClient.get<User>('api/common/user').pipe(
-            tap((user) => {
-                this._user.next(user);
-            })
-        );
+    get(id: number): Observable<any> {
+        return this._httpClient.get<User>(USERS_API + `/${id}` + '?view=synthetic');
+    }
+
+    getByEmail(email: string): Observable<any> {
+        return this._httpClient.get<User>(USERS_API + '?filters=email:' + email + '&view=synthetic');
     }
 
     /**

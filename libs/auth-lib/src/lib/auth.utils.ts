@@ -46,6 +46,10 @@ export class AuthUtils
         return !(date.valueOf() > new Date().valueOf() + offsetSeconds * 1000);
     }
 
+    public static decodeToken(token: string): any{
+        return this._decodeToken(token);
+    }
+
     // -----------------------------------------------------------------------------------------------------
     // @ Private methods
     // -----------------------------------------------------------------------------------------------------

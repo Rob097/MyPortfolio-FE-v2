@@ -11,6 +11,7 @@ import { FuseAlertModule } from 'libs/fuse-lib/src/lib/components/alert';
 import { SharedModule } from 'libs/common-lib/src/lib/shared.module';
 import { AuthSignInComponent } from 'projects/auth-mfe/src/app/auth/sign-in/sign-in.component';
 import { authSignInRoutes } from 'projects/auth-mfe/src/app/auth/sign-in/sign-in.routing';
+import { TranslocoCoreModule } from 'libs/translation-lib/src/lib/transloco/transloco.module';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { authSignInRoutes } from 'projects/auth-mfe/src/app/auth/sign-in/sign-in
         MatProgressSpinnerModule,
         FuseCardModule,
         FuseAlertModule,
-        SharedModule
+        SharedModule,
+        TranslocoCoreModule
     ]
 })
 export class AuthSignInModule

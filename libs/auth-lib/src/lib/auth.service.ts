@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, Observable, of, Subject, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'libs/auth-lib/src/lib/auth.utils';
 import { UserService } from 'libs/auth-lib/src/lib/user/user.service';
+import { Constants } from 'libs/common-lib/src/lib/config/constants';
 
 @Injectable({
     providedIn: 'root'
@@ -66,7 +68,7 @@ export class AuthService
      *
      * @param credentials
      */
-    signIn(credentials: { email: string; password: string }): Observable<any>
+    signIn(credentials: { username: string; password: string; rememberMe: boolean}): Observable<any>
     {
         // Throw error, if the user is already logged in
         if ( this._authenticated )
@@ -74,17 +76,20 @@ export class AuthService
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
+        return this._httpClient.post(Constants.AUTH_API + '/signin', credentials).pipe(
             switchMap((response: any) => {
 
                 // Store the access token in the local storage
-                this.accessToken = response.accessToken;
+                this.accessToken = response?.token;
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
 
                 // Store the user on the user service
-                this._userService.user = response.user;
+                this._userService.getByEmail(AuthUtils.decodeToken(this.accessToken).sub).subscribe({
+                    next: userResponse => this._userService.user = userResponse.content[0],
+                    error: error => console.log(error)
+                });
 
                 // Return a new observable with the response
                 return of(response);
@@ -97,39 +102,18 @@ export class AuthService
      */
     signInUsingToken(): Observable<any>
     {
-        // Sign in using the token
-        return this._httpClient.post('api/auth/sign-in-with-token', {
-            accessToken: this.accessToken
-        }).pipe(
-            catchError(() =>
+        const result: Subject<any> = new Subject();
 
-                // Return false
-                of(false)
-            ),
-            switchMap((response: any) => {
-
-                // Replace the access token with the new one if it's available on
-                // the response object.
-                //
-                // This is an added optional step for better security. Once you sign
-                // in using the token, you should generate a new one on the server
-                // side and attach it to the response object. Then the following
-                // piece of code can replace the token with the refreshed one.
-                if ( response.accessToken )
-                {
-                    this.accessToken = response.accessToken;
-                }
-
-                // Set the authenticated flag to true
+        this._userService.getByEmail(AuthUtils.decodeToken(this.accessToken).sub).subscribe({
+            next: (userResponse) => {
+                this._userService.user = userResponse.content[0];
                 this._authenticated = true;
+                result.next(true);
+            },
+            error: () => result.next(false)
+        });
 
-                // Store the user on the user service
-                this._userService.user = response.user;
-
-                // Return true
-                return of(true);
-            })
-        );
+        return result.asObservable();
     }
 
     /**

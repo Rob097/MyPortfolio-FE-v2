@@ -93,6 +93,6 @@ export class UserComponent implements OnInit, OnDestroy
      */
     signOut(): void
     {
-        this._router.navigate(['/sign-out']);
+        this._router.navigate(['/auth/sign-out']);
     }
 }

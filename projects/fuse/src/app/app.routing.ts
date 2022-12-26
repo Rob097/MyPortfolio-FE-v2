@@ -21,13 +21,6 @@ export const appRoutes: Route[] = [
     {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'example'},
 
     // Auth routes
-    {path: 'sign-in', pathMatch : 'full', redirectTo: 'auth/sign-in'},
-    {path: 'sign-up', pathMatch : 'full', redirectTo: 'auth/sign-up'},
-    {path: 'sign-out', pathMatch : 'full', redirectTo: 'auth/sign-out'},
-    {path: 'confirmation-required', pathMatch : 'full', redirectTo: 'auth/confirmation-required'},
-    {path: 'forgot-password', pathMatch : 'full', redirectTo: 'auth/forgot-password'},
-    {path: 'reset-password', pathMatch : 'full', redirectTo: 'auth/reset-password'},
-    {path: 'unlock-session', pathMatch : 'full', redirectTo: 'auth/unlock-session'},
     {
         path: 'auth',
         component: LayoutComponent,

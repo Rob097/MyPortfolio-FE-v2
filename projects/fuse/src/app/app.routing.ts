@@ -3,6 +3,7 @@ import { AuthGuard } from 'libs/auth-lib/src/lib/guards/auth.guard';
 import { NoAuthGuard } from 'libs/auth-lib/src/lib/guards/noAuth.guard';
 import { LayoutComponent } from 'projects/fuse/src/app/layout/layout.component';
 import { InitialDataResolver } from 'projects/fuse/src/app/app.resolvers';
+import { loadRemoteModule } from '@angular-architects/module-federation';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -19,38 +20,29 @@ export const appRoutes: Route[] = [
     // location. This is a small convenience to keep all main routes together here on this file.
     {path: 'signed-in-redirect', pathMatch : 'full', redirectTo: 'example'},
 
-    // Auth routes for guests
+    // Auth routes
+    {path: 'sign-in', pathMatch : 'full', redirectTo: 'auth/sign-in'},
+    {path: 'sign-up', pathMatch : 'full', redirectTo: 'auth/sign-up'},
+    {path: 'sign-out', pathMatch : 'full', redirectTo: 'auth/sign-out'},
+    {path: 'confirmation-required', pathMatch : 'full', redirectTo: 'auth/confirmation-required'},
+    {path: 'forgot-password', pathMatch : 'full', redirectTo: 'auth/forgot-password'},
+    {path: 'reset-password', pathMatch : 'full', redirectTo: 'auth/reset-password'},
+    {path: 'unlock-session', pathMatch : 'full', redirectTo: 'auth/unlock-session'},
     {
-        path: '',
-        canActivate: [NoAuthGuard],
-        canActivateChild: [NoAuthGuard],
+        path: 'auth',
         component: LayoutComponent,
         data: {
             layout: 'empty'
         },
-        children: [
-            {path: 'confirmation-required', loadChildren: () => import('projects/fuse/src/app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule)},
-            {path: 'forgot-password', loadChildren: () => import('projects/fuse/src/app/modules/auth/forgot-password/forgot-password.module').then(m => m.AuthForgotPasswordModule)},
-            {path: 'reset-password', loadChildren: () => import('projects/fuse/src/app/modules/auth/reset-password/reset-password.module').then(m => m.AuthResetPasswordModule)},
-            {path: 'sign-in', loadChildren: () => import('projects/fuse/src/app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule)},
-            {path: 'sign-up', loadChildren: () => import('projects/fuse/src/app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule)}
-        ]
+        loadChildren: () =>
+          loadRemoteModule({
+            type: 'manifest',
+            remoteName: 'auth-mfe',
+            exposedModule: './Module'
+          })
+          .then(m => m.AuthModule)
     },
 
-    // Auth routes for authenticated users
-    {
-        path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
-        component: LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children: [
-            {path: 'sign-out', loadChildren: () => import('projects/fuse/src/app/modules/auth/sign-out/sign-out.module').then(m => m.AuthSignOutModule)},
-            {path: 'unlock-session', loadChildren: () => import('projects/fuse/src/app/modules/auth/unlock-session/unlock-session.module').then(m => m.AuthUnlockSessionModule)}
-        ]
-    },
 
     // Landing routes
     {

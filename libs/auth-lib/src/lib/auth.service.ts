@@ -4,7 +4,9 @@ import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'libs/auth-lib/src/lib/auth.utils';
 import { UserService } from 'libs/auth-lib/src/lib/user/user.service';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthService
 {
     private _authenticated: boolean = false;

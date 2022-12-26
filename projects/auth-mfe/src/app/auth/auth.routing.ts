@@ -1,14 +1,13 @@
-import { Routes } from '@angular/router';
+import { Route, Routes } from '@angular/router';
 import { AuthGuard } from 'libs/auth-lib/src/lib/guards/auth.guard';
 import { NoAuthGuard } from 'libs/auth-lib/src/lib/guards/noAuth.guard';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from '../home/home.component';
 
-export const APP_ROUTES: Routes = [
-    { path: '', component: HomeComponent, pathMatch: 'full'},
+export const AUTH_ROUTES: Route[] = [
 
     // Auth routes for guests
     {
-        path: 'auth',
+        path: '',
         canActivate: [NoAuthGuard],
         canActivateChild: [NoAuthGuard],
         component: HomeComponent,
@@ -23,7 +22,7 @@ export const APP_ROUTES: Routes = [
     },
 
     {
-        path: 'auth',
+        path: '',
         canActivate: [AuthGuard],
         canActivateChild: [AuthGuard],
         component: HomeComponent,

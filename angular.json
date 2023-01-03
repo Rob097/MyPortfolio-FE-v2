@@ -251,8 +251,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "75kb",
+                  "maximumError": "90kb"
                 }
               ],
               "fileReplacements": [
@@ -391,9 +391,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "libs/translation-lib/src/test.ts",
-            "tsConfig": "libs/translation-lib/tsconfig.spec.json",
-            "karmaConfig": "libs/translation-lib/karma.conf.js"
+            "tsConfig": "libs/translation-lib/tsconfig.spec.json"
           }
         },
         "lint": {

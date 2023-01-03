@@ -11,6 +11,7 @@
   ],
   "include": [
     "src/**/*.d.ts",
-    "../../libs/fuse-lib/src/public-api.ts"
+    "../../libs/fuse-lib/src/public-api.ts",
+    "../../libs/translation-lib/src/public-api.ts"
   ]
 }

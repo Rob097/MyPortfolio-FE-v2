@@ -1,8 +1,7 @@
 import { Translation, TRANSLOCO_CONFIG, TRANSLOCO_LOADER, translocoConfig, TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { environment } from 'projects/fuse/src/environments/environment';
-import { TranslocoHttpLoader } from 'libs/translation-lib/src/lib/transloco/transloco.http-loader';
 import { HttpClientModule } from '@angular/common/http';
+import { TranslocoHttpLoader } from './transloco.http-loader';
 
 @NgModule({
     exports  : [
@@ -29,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
                 defaultLang         : 'en',
                 fallbackLang        : 'en',
                 reRenderOnLangChange: true,
-                prodMode            : environment.production
+                prodMode            : false
             })
         },
         {

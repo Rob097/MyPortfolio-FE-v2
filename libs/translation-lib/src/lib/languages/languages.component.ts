@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { take } from 'rxjs';
 import { AvailableLangs, TranslocoService } from '@ngneat/transloco';
-import { FuseNavigationService, FuseVerticalNavigationComponent } from 'libs/fuse-lib/src/lib/components/navigation';
+import { FuseNavigationService, FuseVerticalNavigationComponent } from 'fuse-lib';
 
 @Component({
     selector       : 'languages',
@@ -125,7 +125,7 @@ export class LanguagesComponent implements OnInit, OnDestroy
         if ( projectDashboardItem )
         {
             this._translocoService.selectTranslate('Project').pipe(take(1))
-                .subscribe((translation) => {
+                .subscribe((translation: any) => {
 
                     // Set the title
                     projectDashboardItem.title = translation;
@@ -140,7 +140,7 @@ export class LanguagesComponent implements OnInit, OnDestroy
         if ( analyticsDashboardItem )
         {
             this._translocoService.selectTranslate('Analytics').pipe(take(1))
-                .subscribe((translation) => {
+                .subscribe((translation: any) => {
 
                     // Set the title
                     analyticsDashboardItem.title = translation;

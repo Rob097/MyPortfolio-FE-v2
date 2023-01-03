@@ -1,4 +1,4 @@
-import { Layout } from 'libs/common-lib/src/lib/config/layout.types';
+import { Layout } from './layout.types';
 
 // Types
 export type Scheme = 'auto' | 'dark' | 'light';

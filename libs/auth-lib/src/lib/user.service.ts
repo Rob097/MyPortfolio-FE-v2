@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, ReplaySubject } from 'rxjs';
-import { User } from 'libs/common-lib/src/lib/models/user.model';
-import { Constants } from 'libs/common-lib/src/lib/config/constants';
+import { Constants, User } from 'common-lib';
 
 
 const USERS_API = Constants.CORE_API + '/users';

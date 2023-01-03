@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Constants } from 'libs/common-lib/src/lib/config/constants';
+import { Constants } from 'common-lib';
 import { catchError, Observable, of, switchMap } from 'rxjs';
-import { UserService } from 'auth-lib';
 import { AuthUtils } from './auth.utils';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'

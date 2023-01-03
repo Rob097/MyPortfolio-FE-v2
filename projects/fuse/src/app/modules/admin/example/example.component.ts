@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { UserService } from 'libs/auth-lib/src/lib/user.service';
 import { Criteria, Operation, View } from 'libs/common-lib/src/lib/models/criteria.model';
 import { DiaryQ } from 'libs/common-lib/src/lib/models/diary.model';
 import { User } from 'libs/common-lib/src/lib/models/user.model';
 import { Subject, takeUntil } from 'rxjs';
+import { SecondLibService, UserService } from 'second-lib';
 import { DiaryService } from '../../../services/diary.service';
 import { StoryService } from '../../../services/story.service';
 
@@ -26,7 +26,9 @@ export class ExampleComponent implements OnInit, OnDestroy
         private _userService: UserService,
         private _storyService: StoryService,
         private _diaryService: DiaryService,
-    ){}
+        private _secondService: SecondLibService
+    ){
+    }
 
     ngOnInit(): void {
         // Subscribe to the user service

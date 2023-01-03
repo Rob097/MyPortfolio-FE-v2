@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angul
 import { ActivatedRoute, Router } from '@angular/router';
 import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
 import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
-import { AuthService } from 'libs/auth-lib/src/lib/auth.service';
+import { SecondLibService } from 'second-lib';
 
 @Component({
     selector     : 'auth-sign-in',
@@ -27,9 +27,9 @@ export class AuthSignInComponent implements OnInit
      */
     constructor(
         private _activatedRoute: ActivatedRoute,
-        private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
-        private _router: Router
+        private _router: Router,
+        private _secondService: SecondLibService
     )
     {
     }
@@ -73,7 +73,7 @@ export class AuthSignInComponent implements OnInit
         this.showAlert = false;
 
         // Sign in
-        this._authService.signIn(this.signInForm.value).subscribe({
+        this._secondService.signIn(this.signInForm.value).subscribe({
             next: () => {
                 // Set the redirect url.
                 // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user

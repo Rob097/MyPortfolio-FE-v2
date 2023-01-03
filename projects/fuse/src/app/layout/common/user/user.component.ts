@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BooleanInput } from '@angular/cdk/coercion';
 import { Subject, takeUntil } from 'rxjs';
 import { User } from 'libs/common-lib/src/lib/models/user.model';
-import { UserService } from 'libs/auth-lib/src/lib/user.service';
+import { UserService } from 'second-lib';
 
 @Component({
     selector       : 'user',

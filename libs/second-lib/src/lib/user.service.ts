@@ -19,6 +19,7 @@ export class UserService
      */
     constructor(private _httpClient: HttpClient)
     {
+        console.log('USER SERVICE');
     }
 
     // -----------------------------------------------------------------------------------------------------

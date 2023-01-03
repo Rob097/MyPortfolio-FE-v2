@@ -1,6 +1,5 @@
-import { Route, Routes } from '@angular/router';
-import { AuthGuard } from 'libs/auth-lib/src/lib/guards/auth.guard';
-import { NoAuthGuard } from 'libs/auth-lib/src/lib/guards/noAuth.guard';
+import { Route } from '@angular/router';
+import { AuthGuard, NoAuthGuard } from 'second-lib';
 import { HomeComponent } from '../home/home.component';
 
 export const AUTH_ROUTES: Route[] = [

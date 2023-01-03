@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { finalize, Subject, takeUntil, takeWhile, tap, timer } from 'rxjs';
-import { AuthService } from 'libs/auth-lib/src/lib/auth.service';
+import { SecondLibService } from 'second-lib';
 
 @Component({
     selector     : 'auth-sign-out',
@@ -21,7 +21,7 @@ export class AuthSignOutComponent implements OnInit, OnDestroy
      * Constructor
      */
     constructor(
-        private _authService: AuthService,
+        private _authService: SecondLibService,
         private _router: Router
     )
     {

@@ -21,7 +21,7 @@ export class User {
     educations?: Education[];
     experiences?: Experience[];
     diaries?: Diary[];
-    avatar?: string;
+    avatar!: string;
     status?: string;
 }
 

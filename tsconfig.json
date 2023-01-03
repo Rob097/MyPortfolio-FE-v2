@@ -7,14 +7,14 @@
     "sourceMap": true,
     "declaration": false,
     "paths": {
-      "auth-lib": [
-        "libs/auth-lib/src/public-api.ts"
-      ],
       "common-lib": [
         "libs/common-lib/src/public-api.ts"
       ],
       "fuse-lib": [
         "libs/fuse-lib/src/public-api.ts"
+      ],
+      "second-lib": [
+        "libs/second-lib/src/public-api.ts"
       ],
       "translation-lib": [
         "libs/translation-lib/src/public-api.ts"

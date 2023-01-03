@@ -1,12 +1,10 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { AuthModule } from 'libs/auth-lib/src/lib/auth.module';
 import { IconsModule } from 'libs/common-lib/src/lib/icons/icons.module';
 import { TranslocoCoreModule } from 'libs/translation-lib/src/lib/transloco/transloco.module';
 import { interceptorProviders } from './interceptors/interceptors';
 
 @NgModule({
     imports: [
-        AuthModule,
         IconsModule,
         TranslocoCoreModule
     ],

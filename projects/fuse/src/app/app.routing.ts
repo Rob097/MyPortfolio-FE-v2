@@ -1,9 +1,8 @@
 import { Route } from '@angular/router';
-import { AuthGuard } from 'libs/auth-lib/src/lib/guards/auth.guard';
-import { NoAuthGuard } from 'libs/auth-lib/src/lib/guards/noAuth.guard';
 import { LayoutComponent } from 'projects/fuse/src/app/layout/layout.component';
 import { InitialDataResolver } from 'projects/fuse/src/app/app.resolvers';
 import { loadRemoteModule } from '@angular-architects/module-federation';
+import { AuthGuard } from 'second-lib';
 
 // @formatter:off
 /* eslint-disable max-len */

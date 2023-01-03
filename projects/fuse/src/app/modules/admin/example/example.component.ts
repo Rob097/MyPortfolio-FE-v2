@@ -3,7 +3,7 @@ import { Criteria, Operation, View } from 'libs/common-lib/src/lib/models/criter
 import { DiaryQ } from 'libs/common-lib/src/lib/models/diary.model';
 import { User } from 'libs/common-lib/src/lib/models/user.model';
 import { Subject, takeUntil } from 'rxjs';
-import { SecondLibService, UserService } from 'second-lib';
+import { AuthService, UserService } from 'auth-lib';
 import { DiaryService } from '../../../services/diary.service';
 import { StoryService } from '../../../services/story.service';
 
@@ -26,7 +26,7 @@ export class ExampleComponent implements OnInit, OnDestroy
         private _userService: UserService,
         private _storyService: StoryService,
         private _diaryService: DiaryService,
-        private _secondService: SecondLibService
+        private _authService: AuthService
     ){
     }
 

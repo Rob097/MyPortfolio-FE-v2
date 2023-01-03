@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angul
 import { ActivatedRoute, Router } from '@angular/router';
 import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
 import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
-import { SecondLibService, UserService } from 'second-lib';
+import { AuthService, UserService } from 'auth-lib';
 
 @Component({
     selector     : 'auth-unlock-session',
@@ -29,7 +29,7 @@ export class AuthUnlockSessionComponent implements OnInit
      */
     constructor(
         private _activatedRoute: ActivatedRoute,
-        private _authService: SecondLibService,
+        private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router,
         private _userService: UserService

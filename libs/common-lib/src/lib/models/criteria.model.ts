@@ -63,10 +63,10 @@ export class Filters {
 
     constructor(citerias?: Criteria[], view?: View, page?: number, size?: number, sort?: Sort){
         this.criterias = citerias;
-        this.view = view || DEFAULT_VIEW;
-        this.page = page || DEFAULT_PAGE;
-        this.size = size || DEFAULT_SIZE;
-        this.sort = sort || undefined;
+        this.view = view ? view : DEFAULT_VIEW;
+        this.page = page ? page : DEFAULT_PAGE;
+        this.size = size ? size : DEFAULT_SIZE;
+        this.sort = sort ? sort : undefined;
     }
 
     // Generates a string like: 'name:Name of user,age:10'

@@ -10,8 +10,8 @@
       ],
       "parserOptions": {
         "project": [
-          "libs/second-lib/tsconfig.lib.json",
-          "libs/second-lib/tsconfig.spec.json"
+          "libs/auth-lib/tsconfig.lib.json",
+          "libs/auth-lib/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },

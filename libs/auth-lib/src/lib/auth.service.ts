@@ -2,14 +2,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Constants } from 'libs/common-lib/src/lib/config/constants';
-import { catchError, Observable, of, ReplaySubject, Subject, switchMap } from 'rxjs';
-import { UserService } from 'second-lib';
+import { catchError, Observable, of, switchMap } from 'rxjs';
+import { UserService } from 'auth-lib';
 import { AuthUtils } from './auth.utils';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SecondLibService {
+export class AuthService {
 
   private _authenticated: boolean = false;
 
@@ -17,7 +17,6 @@ export class SecondLibService {
     private _httpClient: HttpClient,
     private _userService: UserService
   ) {
-    console.log('AUTH SERVICE');
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -62,10 +61,10 @@ export class SecondLibService {
    * @param credentials
    */
   signIn(credentials: { username: string; password: string; rememberMe: boolean }): Observable<any> {
-    /* Throw error, if the user is already logged in
+    // Throw error, if the user is already logged in
     if (this._authenticated) {
       throw new Error('User is already logged in.');
-    }*/
+    }
 
     return this._httpClient.post(Constants.AUTH_API + '/signin', credentials).pipe(
       switchMap((response: any) => {

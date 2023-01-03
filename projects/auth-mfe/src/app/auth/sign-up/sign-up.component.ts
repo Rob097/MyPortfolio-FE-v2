@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators, ValidationErr
 import { Router } from '@angular/router';
 import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
 import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
-import { SecondLibService } from 'second-lib';
+import { AuthService } from 'auth-lib';
 
 @Component({
     selector     : 'auth-sign-up',
@@ -26,7 +26,7 @@ export class AuthSignUpComponent implements OnInit
      * Constructor
      */
     constructor(
-        private _authService: SecondLibService,
+        private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router
     )

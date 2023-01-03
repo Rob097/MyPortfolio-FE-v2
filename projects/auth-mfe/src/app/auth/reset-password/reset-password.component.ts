@@ -4,7 +4,7 @@ import { finalize } from 'rxjs';
 import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
 import { FuseValidators } from 'libs/fuse-lib/src/lib/validators';
 import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
-import { SecondLibService } from 'second-lib';
+import { AuthService } from 'auth-lib';
 
 @Component({
     selector     : 'auth-reset-password',
@@ -27,7 +27,7 @@ export class AuthResetPasswordComponent implements OnInit
      * Constructor
      */
     constructor(
-        private _authService: SecondLibService,
+        private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder
     )
     {

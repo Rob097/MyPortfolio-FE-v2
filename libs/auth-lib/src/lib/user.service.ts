@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, ReplaySubject, tap } from 'rxjs';
+import { map, Observable, ReplaySubject } from 'rxjs';
 import { User } from 'libs/common-lib/src/lib/models/user.model';
 import { Constants } from 'libs/common-lib/src/lib/config/constants';
 
@@ -19,7 +19,6 @@ export class UserService
      */
     constructor(private _httpClient: HttpClient)
     {
-        console.log('USER SERVICE');
     }
 
     // -----------------------------------------------------------------------------------------------------

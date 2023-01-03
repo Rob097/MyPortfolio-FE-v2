@@ -13,8 +13,8 @@
       "fuse-lib": [
         "libs/fuse-lib/src/public-api.ts"
       ],
-      "second-lib": [
-        "libs/second-lib/src/public-api.ts"
+      "auth-lib": [
+        "libs/auth-lib/src/public-api.ts"
       ],
       "translation-lib": [
         "libs/translation-lib/src/public-api.ts"

@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { AuthGuard, NoAuthGuard } from 'second-lib';
+import { AuthGuard, NoAuthGuard } from 'auth-lib';
 import { HomeComponent } from '../home/home.component';
 
 export const AUTH_ROUTES: Route[] = [

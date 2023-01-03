@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { AuthUtils, SecondLibService } from 'second-lib';
+import { AuthUtils, AuthService } from 'auth-lib';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor
@@ -9,7 +9,7 @@ export class AuthInterceptor implements HttpInterceptor
     /**
      * Constructor
      */
-    constructor(private _authService: SecondLibService)
+    constructor(private _authService: AuthService)
     {
     }
 

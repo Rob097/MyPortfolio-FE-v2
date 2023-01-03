@@ -14,7 +14,7 @@ export class StoryService implements BaseService {
     constructor(private _httpClient: HttpClient){ }
 
     getById(id: number, view?: string): Observable<any> {
-        return this._httpClient.get<Story>(STORIES_API + `/${id}` + '?view=' + view || View.normal);
+        return this._httpClient.get<Story>(STORIES_API + `/${id}` + '?view=' + (view ? view : View.normal));
     }
 
     getByCriteria(criteria: StoryQ): Observable<any> {

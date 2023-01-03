@@ -6,7 +6,7 @@ import { FuseNavigationService, FuseVerticalNavigationComponent } from 'libs/fus
 import { Navigation } from 'projects/fuse/src/app/core/navigation/navigation.types';
 import { NavigationService } from 'projects/fuse/src/app/core/navigation/navigation.service';
 import { User } from 'libs/common-lib/src/lib/models/user.model';
-import { UserService } from 'second-lib';
+import { UserService } from 'auth-lib';
 
 @Component({
     selector     : 'futuristic-layout',

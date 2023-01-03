@@ -2,7 +2,7 @@ import { Route } from '@angular/router';
 import { LayoutComponent } from 'projects/fuse/src/app/layout/layout.component';
 import { InitialDataResolver } from 'projects/fuse/src/app/app.resolvers';
 import { loadRemoteModule } from '@angular-architects/module-federation';
-import { AuthGuard } from 'second-lib';
+import { AuthGuard } from 'auth-lib';
 
 // @formatter:off
 /* eslint-disable max-len */

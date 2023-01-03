@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angul
 import { finalize } from 'rxjs';
 import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
 import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
-import { SecondLibService } from 'second-lib';
+import { AuthService } from 'auth-lib';
 
 @Component({
     selector     : 'auth-forgot-password',
@@ -26,7 +26,7 @@ export class AuthForgotPasswordComponent implements OnInit
      * Constructor
      */
     constructor(
-        private _authService: SecondLibService,
+        private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder
     )
     {

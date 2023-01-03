@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, ReplaySubject, tap } from 'rxjs';
-import { User } from 'libs/auth-lib/src/lib/user/user.types';
+import { User } from 'libs/common-lib/src/lib/models/user.model';
 import { Constants } from 'libs/common-lib/src/lib/config/constants';
 
 
@@ -12,7 +12,7 @@ const USERS_API = Constants.CORE_API + '/users';
 })
 export class UserService
 {
-    private _user: ReplaySubject<User> = new ReplaySubject<User>(1);
+    public _user: ReplaySubject<User> = new ReplaySubject<User>(1);
 
     /**
      * Constructor
@@ -48,11 +48,11 @@ export class UserService
      * Get the current logged in user data
      */
     get(id: number): Observable<any> {
-        return this._httpClient.get<User>(USERS_API + `/${id}` + '?view=synthetic');
+        return this._httpClient.get<User>(USERS_API + `/${id}` + '?view=verbose');
     }
 
     getByEmail(email: string): Observable<any> {
-        return this._httpClient.get<User>(USERS_API + '?filters=email:' + email + '&view=synthetic');
+        return this._httpClient.get<any>(USERS_API + '?filters=email:' + email + '&view=synthetic');
     }
 
     /**

@@ -33,18 +33,6 @@
                 [formGroup]="signUpForm"
                 #signUpNgForm="ngForm">
 
-                <!-- Name field -->
-                <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
-                    <input
-                        id="name"
-                        matInput
-                        [formControlName]="'name'">
-                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
-                        Full name is required
-                    </mat-error>
-                </mat-form-field>
-
                 <!-- Email field -->
                 <mat-form-field class="w-full">
                     <mat-label>Email address</mat-label>
@@ -88,13 +76,59 @@
                     </mat-error>
                 </mat-form-field>
 
-                <!-- Company field -->
+                <!-- Matching Password field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Company</mat-label>
+                    <mat-label>Conferma Password</mat-label>
                     <input
-                        id="company-confirm"
+                        id="matchingPassword"
                         matInput
-                        [formControlName]="'company'">
+                        type="password"
+                        [formControlName]="'matchingPassword'"
+                        #matchingPasswordField>
+                    <button
+                        mat-icon-button
+                        type="button"
+                        (click)="matchingPasswordField.type === 'password' ? matchingPasswordField.type = 'text' : matchingPasswordField.type = 'password'"
+                        matSuffix>
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="matchingPasswordField.type === 'password'"
+                            [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="matchingPasswordField.type === 'text'"
+                            [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                    </button>
+                    <mat-error *ngIf="signUpForm.get('matchingPassword').hasError('required')">
+                        Password match is required
+                    </mat-error>
+                    <mat-error *ngIf="signUpForm.get('matchingPassword').hasError('confirmedValidator')">
+                        Passwords do not match
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- First Name field -->
+                <mat-form-field class="w-full">
+                    <mat-label>First name</mat-label>
+                    <input
+                        id="firstName"
+                        matInput
+                        [formControlName]="'firstName'">
+                    <mat-error *ngIf="signUpForm.get('firstName').hasError('required')">
+                        First name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Last Name field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Last name</mat-label>
+                    <input
+                        id="lastName"
+                        matInput
+                        [formControlName]="'lastName'">
+                    <mat-error *ngIf="signUpForm.get('lastName').hasError('required')">
+                        Last name is required
+                    </mat-error>
                 </mat-form-field>
 
                 <!-- ToS and PP -->
@@ -114,6 +148,9 @@
                         </a>
                     </mat-checkbox>
                 </div>
+                <mat-error *ngIf="checkBoxError()">
+                    Please, agree with our Terms and Privacy policy to register your account
+                </mat-error>
 
                 <!-- Submit button -->
                 <button

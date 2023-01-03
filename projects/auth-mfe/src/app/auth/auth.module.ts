@@ -14,11 +14,8 @@ import { TranslocoCoreModule } from 'libs/translation-lib/src/lib/transloco/tran
         RouterModule.forChild(AUTH_ROUTES),
         TranslocoCoreModule
     ],
-    providers: [
-
-    ],
     bootstrap: [
         HomeComponent
-    ],
+    ]
 })
 export class AuthModule {}

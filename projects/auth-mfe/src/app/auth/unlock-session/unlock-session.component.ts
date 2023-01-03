@@ -3,7 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angul
 import { ActivatedRoute, Router } from '@angular/router';
 import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
 import { AuthService } from 'libs/auth-lib/src/lib/auth.service';
-import { UserService } from 'libs/auth-lib/src/lib/user/user.service';
+import { UserService } from 'libs/auth-lib/src/lib/user.service';
 import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
 
 @Component({

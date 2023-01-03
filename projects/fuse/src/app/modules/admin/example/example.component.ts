@@ -12,13 +12,16 @@ export class ExampleComponent implements OnInit, OnDestroy
 {
 
     user: User;
+    secondUser: User;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
      * Constructor
      */
-    constructor(private _userService: UserService)
-    {
+    constructor(
+        private _userService: UserService,
+        private _storyService: StoryService,
+        private _diaryService: DiaryService,
     }
 
     ngOnInit(): void {
@@ -34,6 +37,61 @@ export class ExampleComponent implements OnInit, OnDestroy
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next(null);
         this._unsubscribeAll.complete();
+    }
+
+    getUser(){
+        this._userService.get(25).subscribe(el => {
+            this.secondUser = el.content;
+
+
+            this._diaryService.getByCriteria(
+                new DiaryQ(
+                    [
+                        new Criteria(DiaryQ.id,Operation.equals,1),
+                        new Criteria(DiaryQ.entryDateTime,Operation.lessThan,'23/12/2022 15:43:22')
+                    ],
+                    View.verbose,
+                    0,
+                    10,
+                    undefined
+                )
+            ).subscribe((el) => {
+                if(el && el.content && el.content.length > 0) {
+                    this.secondUser.diaries = el.content;
+
+                    this.secondUser.diaries.forEach(diary => {
+                        diary.stories.forEach(story => {
+                            this._storyService.getById(story.id).subscribe(detail =>{
+                                const i = this.secondUser.diaries.find(d => d.id === diary.id).stories.findIndex(s => s.id === story.id);
+                                this.secondUser.diaries.find(d => d.id === diary.id).stories[i] = detail.content;
+                            })
+                        });
+                    });
+                }
+
+            });
+
+
+
+            /*this._storyService.getByCriteria(
+                new StoryQ(
+                    [
+                        new Criteria(StoryQ.title,Operation.equals,'Titolo della storia'),
+                        new Criteria(StoryQ.id,Operation.equals,1),
+                        new Criteria(StoryQ.diaryId,Operation.equals,1)
+                    ],
+                    View.verbose,
+                    0,
+                    10,
+                    new Sort(StoryQ.description)
+                )
+            ).subscribe((el) => {
+                this.secondUser.diaries = [];
+                this.secondUser.diaries.push(new Diary());
+                this.secondUser.diaries[0].stories = [];
+                this.secondUser.diaries[0].stories.push(el.content[0]);
+            });*/
+        });
     }
 
 }

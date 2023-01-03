@@ -4,12 +4,20 @@
     <div class="flex-auto p-6 sm:p-10">
 
         <!-- CONTENT GOES HERE -->
-        <div class="h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl">
+        <div class="h-full border-2 border-dashed border-gray-300 rounded-2xl">
 
             <ng-container *transloco="let t">
-                <div class="text-2xl md:text-5xl font-semibold tracking-tight leading-7 md:leading-snug truncate">{{t('welcome-back')}},  {{user.firstName}}!</div>
+                <div class="text-2xl md:text-5xl font-semibold tracking-tight leading-7 md:leading-snug truncate">{{t('welcome-back')}},  {{user?.firstName}}!</div>
+                <div class="text-2xl md:text-5xl font-semibold tracking-tight leading-7 md:leading-snug truncate">{{user1}}!</div>
             </ng-container>
 
+            <button (click)="getUser()">GET USER</button>
+
+            <p *ngIf="secondUser">{{ secondUser.firstName }}</p>
+            <p *ngIf="secondUser">{{ secondUser.nationality }}</p>
+            <p *ngIf="secondUser?.educations">{{ secondUser.educations[0].description }}</p>
+            <p *ngIf="secondUser?.diaries && secondUser?.diaries[0].stories">{{ secondUser.diaries[0].stories[0].title }}</p>
+            <p *ngIf="secondUser?.diaries && secondUser?.diaries[0].stories && secondUser?.diaries[0].stories[0].skills">{{ secondUser.diaries[0].stories[0].skills[0].name }}</p>
         </div>
 
     </div>

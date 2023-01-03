@@ -6,7 +6,7 @@ import { NavigationService } from 'projects/fuse/src/app/core/navigation/navigat
 import { NotificationsService } from 'projects/fuse/src/app/layout/common/notifications/notifications.service';
 import { QuickChatService } from 'projects/fuse/src/app/layout/common/quick-chat/quick-chat.service';
 import { ShortcutsService } from 'projects/fuse/src/app/layout/common/shortcuts/shortcuts.service';
-import { UserService } from 'libs/auth-lib/src/lib/user/user.service';
+import { UserService } from 'libs/auth-lib/src/lib/user.service';
 
 @Injectable({
     providedIn: 'root'

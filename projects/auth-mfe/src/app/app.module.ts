@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_ROUTES } from './app.routing';
 import { AppComponent } from './app.component';
 import { TranslocoCoreModule } from 'libs/translation-lib/src/lib/transloco/transloco.module';
-import { AuthService } from 'libs/auth-lib/src/lib/auth.service';
 import { IconsModule } from 'libs/common-lib/src/lib/icons/icons.module';
 import { FuseModule } from 'libs/fuse-lib/src/lib/fuse.module';
 import { FuseConfigModule } from 'libs/fuse-lib/src/lib/services/config/config.module';
@@ -25,9 +24,7 @@ import { appConfig } from 'libs/common-lib/src/lib/config/app.config';
     // Fuse, FuseConfig & FuseMockAPI
     FuseModule,
     FuseConfigModule.forRoot(appConfig)
-
   ],
-  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

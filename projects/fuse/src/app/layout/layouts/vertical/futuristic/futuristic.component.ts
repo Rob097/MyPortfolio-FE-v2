@@ -5,8 +5,8 @@ import { FuseMediaWatcherService } from 'libs/fuse-lib/src/lib/services/media-wa
 import { FuseNavigationService, FuseVerticalNavigationComponent } from 'libs/fuse-lib/src/lib/components/navigation';
 import { Navigation } from 'projects/fuse/src/app/core/navigation/navigation.types';
 import { NavigationService } from 'projects/fuse/src/app/core/navigation/navigation.service';
-import { User } from 'libs/auth-lib/src/lib/user/user.types';
-import { UserService } from 'libs/auth-lib/src/lib/user/user.service';
+import { User } from 'libs/common-lib/src/lib/models/user.model';
+import { UserService } from 'libs/auth-lib/src/lib/user.service';
 
 @Component({
     selector     : 'futuristic-layout',

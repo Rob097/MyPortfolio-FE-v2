@@ -11,8 +11,8 @@
 		"fuse": {
 			"projectType": "application",
 			"schematics": {
-				"@schematics/angular:component": {
-					"style": "scss"
+				"@schematics/angular:application": {
+					"strict": true
 				}
 			},
 			"root": "projects/fuse",
@@ -82,7 +82,8 @@
 							"projects/fuse/src/styles/vendors.scss",
 							"libs/fuse-lib/src/lib/styles/main.scss",
 							"projects/fuse/src/styles/styles.scss",
-							"projects/fuse/src/styles/tailwind.scss"
+							"projects/fuse/src/styles/tailwind.scss",
+                            "node_modules/ngx-toastr/toastr.css"
 						],
 						"scripts": [],
 						"extraWebpackConfig": "projects/fuse/webpack.config.js",

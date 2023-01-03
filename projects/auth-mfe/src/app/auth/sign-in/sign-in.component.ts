@@ -92,10 +92,17 @@ export class AuthSignInComponent implements OnInit
                 this.signInNgForm.resetForm();
 
                 // Set the alert
-                this.alert = {
-                    type   : error?.error?.messages[0]?.level?.toLowerCase(),
-                    message: error?.error?.messages[0]?.text
-                };
+                if(error.error.messages){
+                    this.alert = {
+                        type   : error?.error?.messages[0]?.level?.toLowerCase(),
+                        message: error?.error?.messages[0]?.text
+                    };
+                } else {
+                    this.alert = {
+                        type   : 'error',
+                        message: error.statusText
+                    };
+                }
 
                 // Show the alert
                 this.showAlert = true;

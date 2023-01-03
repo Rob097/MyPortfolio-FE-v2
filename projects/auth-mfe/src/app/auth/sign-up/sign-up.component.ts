@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators, ValidationErrors, AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from 'libs/fuse-lib/src/lib/animations';
 import { FuseAlertType } from 'libs/fuse-lib/src/lib/components/alert';
@@ -44,12 +44,13 @@ export class AuthSignUpComponent implements OnInit
     {
         // Create the form
         this.signUpForm = this._formBuilder.group({
-                name      : ['', Validators.required],
                 email     : ['', [Validators.required, Validators.email]],
                 password  : ['', Validators.required],
-                company   : [''],
-                agreements: ['', Validators.requiredTrue]
-            }
+                matchingPassword  : ['', Validators.required],
+                firstName      : ['', Validators.required],
+                lastName      : ['', Validators.required],
+                agreements: [false, Validators.requiredTrue]
+            }, { validators: ConfirmedValidator('password', 'matchingPassword') }
         );
     }
 
@@ -62,9 +63,25 @@ export class AuthSignUpComponent implements OnInit
      */
     signUp(): void
     {
+        // Hide an eventual alert
+        this.showAlert = false;
+
         // Do nothing if the form is invalid
         if ( this.signUpForm.invalid )
         {
+
+            if(this.signUpForm.get('agreements').invalid){
+                this.signUpForm.get('agreements').markAsTouched();
+            }
+
+            // Set the alert
+            this.alert = {
+                type   : 'error',
+                message: 'Please, compile all the required fields.'
+            };
+            // Show the alert
+            this.showAlert = true;
+
             return;
         }
 
@@ -75,30 +92,55 @@ export class AuthSignUpComponent implements OnInit
         this.showAlert = false;
 
         // Sign up
-        this._authService.signUp(this.signUpForm.value)
-            .subscribe(
-                (response) => {
+        this._authService.signUp(this.signUpForm.value).subscribe({
+            next: (response) => {
+                // Navigate to the confirmation required page
+                this._router.navigateByUrl('/auth/confirmation-required');
+            },
+            error: (error) => {
+                // Re-enable the form
+                this.signUpForm.enable();
 
-                    // Navigate to the confirmation required page
-                    this._router.navigateByUrl('/auth/confirmation-required');
-                },
-                (response) => {
+                // Reset the form
+                this.signUpNgForm.resetForm();
 
-                    // Re-enable the form
-                    this.signUpForm.enable();
+                // Set the alert
+                this.alert = {
+                    type   : 'error',
+                    message: 'Something went wrong, please try again.'
+                };
 
-                    // Reset the form
-                    this.signUpNgForm.resetForm();
+                // Show the alert
+                this.showAlert = true;
+            }
+        });
+    }
 
-                    // Set the alert
-                    this.alert = {
-                        type   : 'error',
-                        message: 'Something went wrong, please try again.'
-                    };
+    checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => {
+        let pass = group.get('password').value;
+        let matchingPass = group.get('matchingPassword').value
+        return pass === matchingPass ? null : { notSame: true }
+    }
+    checkBoxError() {
+        if(this.signUpForm.touched) {
+          const value = this.signUpForm.get('agreements').touched && this.signUpForm.get('agreements').invalid;
+          return value;
+        }
+        return false;
+    }
+}
 
-                    // Show the alert
-                    this.showAlert = true;
-                }
-            );
+function ConfirmedValidator(controlName: string, matchingControlName: string){
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+        if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+            return;
+        }
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ confirmedValidator: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
     }
 }

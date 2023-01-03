@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, of, Subject, switchMap, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { AuthUtils } from 'libs/auth-lib/src/lib/auth.utils';
-import { UserService } from 'libs/auth-lib/src/lib/user/user.service';
+import { UserService } from 'libs/auth-lib/src/lib/user.service';
 import { Constants } from 'libs/common-lib/src/lib/config/constants';
 
 @Injectable({
@@ -68,31 +68,28 @@ export class AuthService
      *
      * @param credentials
      */
-    signIn(credentials: { username: string; password: string; rememberMe: boolean}): Observable<any>
-    {
+    signIn(credentials: { username: string; password: string; rememberMe: boolean }): Observable<any> {
         // Throw error, if the user is already logged in
-        if ( this._authenticated )
-        {
+        if (this._authenticated) {
             return throwError('User is already logged in.');
         }
 
         return this._httpClient.post(Constants.AUTH_API + '/signin', credentials).pipe(
             switchMap((response: any) => {
-
                 // Store the access token in the local storage
                 this.accessToken = response?.token;
 
-                // Set the authenticated flag to true
-                this._authenticated = true;
-
                 // Store the user on the user service
-                this._userService.getByEmail(AuthUtils.decodeToken(this.accessToken).sub).subscribe({
-                    next: userResponse => this._userService.user = userResponse.content[0],
-                    error: error => console.log(error)
-                });
-
-                // Return a new observable with the response
-                return of(response);
+                return this._userService.getByEmail(AuthUtils.decodeToken(this.accessToken).sub).pipe(
+                    switchMap((userResponse: any) => {
+                        this._userService.user = userResponse.content[0];
+                        this._authenticated = true;
+                        return of(response);
+                    }),
+                    catchError((error) => {
+                        throw new Error(error);
+                    })
+                );
             })
         );
     }
@@ -102,18 +99,16 @@ export class AuthService
      */
     signInUsingToken(): Observable<any>
     {
-        const result: Subject<any> = new Subject();
-
-        this._userService.getByEmail(AuthUtils.decodeToken(this.accessToken).sub).subscribe({
-            next: (userResponse) => {
+        return this._userService.getByEmail(AuthUtils.decodeToken(this.accessToken).sub).pipe(
+            switchMap((userResponse: any) => {
                 this._userService.user = userResponse.content[0];
                 this._authenticated = true;
-                result.next(true);
-            },
-            error: () => result.next(false)
-        });
-
-        return result.asObservable();
+                return of(true);
+            }),
+            catchError((error) => {
+                throw new Error(error);
+            })
+        );
     }
 
     /**
@@ -136,9 +131,9 @@ export class AuthService
      *
      * @param user
      */
-    signUp(user: { name: string; email: string; password: string; company: string }): Observable<any>
+    signUp(user: { email: string; password: string; matchingPassword: string; firstName: string; lastName: string }): Observable<any>
     {
-        return this._httpClient.post('api/auth/sign-up', user);
+        return this._httpClient.post(Constants.AUTH_API + '/signup', user);
     }
 
     /**

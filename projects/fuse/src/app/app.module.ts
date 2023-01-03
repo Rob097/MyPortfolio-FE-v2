@@ -12,6 +12,8 @@ import { mockApiServices } from 'projects/fuse/src/app/mock-api';
 import { LayoutModule } from 'projects/fuse/src/app/layout/layout.module';
 import { AppComponent } from 'projects/fuse/src/app/app.component';
 import { appRoutes } from 'projects/fuse/src/app/app.routing';
+import { CustomModule } from './services/custom.module';
+import { ToastrModule } from 'ngx-toastr';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -26,6 +28,7 @@ const routerConfig: ExtraOptions = {
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
+        ToastrModule.forRoot(),
 
         // Fuse, FuseConfig & FuseMockAPI
         FuseModule,
@@ -39,7 +42,9 @@ const routerConfig: ExtraOptions = {
         LayoutModule,
 
         // 3rd party modules that require global configuration via forRoot
-        MarkdownModule.forRoot({})
+        MarkdownModule.forRoot({}),
+
+        CustomModule
     ],
     bootstrap   : [
         AppComponent

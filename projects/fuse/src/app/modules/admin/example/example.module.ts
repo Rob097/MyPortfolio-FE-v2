@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
@@ -15,6 +16,7 @@ const exampleRoutes: Route[] = [
         ExampleComponent
     ],
     imports     : [
+        CommonModule,
         RouterModule.forChild(exampleRoutes),
         TranslocoModule
     ]

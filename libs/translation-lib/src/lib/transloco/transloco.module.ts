@@ -2,6 +2,19 @@ import { Translation, TRANSLOCO_CONFIG, TRANSLOCO_LOADER, translocoConfig, Trans
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco.http-loader';
+import { isDevMode } from '@angular/core';
+
+// Function used to check if we are in production.
+// Wait 2 seconds in order to let enableProduction to be called.
+export class ProdCheckComponent {
+    static async isInDevMode(): Promise<boolean> {
+      return new Promise(() => {
+        setTimeout(() => {
+            isDevMode();
+        }, 2000);
+      });
+    }
+}
 
 @NgModule({
     exports  : [
@@ -28,7 +41,7 @@ import { TranslocoHttpLoader } from './transloco.http-loader';
                 defaultLang         : 'en',
                 fallbackLang        : 'en',
                 reRenderOnLangChange: true,
-                prodMode            : false
+                prodMode            : !ProdCheckComponent.isInDevMode()
             })
         },
         {

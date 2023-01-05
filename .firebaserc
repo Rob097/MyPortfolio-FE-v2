@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "myportfoliov2-63852"
+  },
+  "targets": {
+    "myportfoliov2-63852": {
+      "hosting": {
+        "fuse": [
+          "myportfoliov2-63852"
+        ],
+        "auth": [
+          "auth-mfe"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

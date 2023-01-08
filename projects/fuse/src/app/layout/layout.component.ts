@@ -8,6 +8,8 @@ import { FusePlatformService } from 'libs/fuse-lib/src/lib/services/platform';
 import { FUSE_VERSION } from 'libs/fuse-lib/src/lib/version';
 import { Layout } from 'libs/common-lib/src/lib/config/layout.types';
 import { AppConfig } from 'libs/common-lib/src/lib/config/app.config';
+import { AlertsService } from '../services/alerts.service';
+import { AuthService } from 'auth-lib';
 
 @Component({
     selector     : 'layout',
@@ -21,6 +23,7 @@ export class LayoutComponent implements OnInit, OnDestroy
     layout: Layout;
     scheme: 'dark' | 'light';
     theme: string;
+    isAuthenticated: boolean;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
@@ -33,7 +36,9 @@ export class LayoutComponent implements OnInit, OnDestroy
         private _router: Router,
         private _fuseConfigService: FuseConfigService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
-        private _fusePlatformService: FusePlatformService
+        private _fusePlatformService: FusePlatformService,
+        private _authService: AuthService,
+        private _alertsService: AlertsService
     )
     {
     }
@@ -107,6 +112,17 @@ export class LayoutComponent implements OnInit, OnDestroy
 
         // Set the OS name
         this._renderer2.addClass(this._document.body, this._fusePlatformService.osName);
+
+        // Check if user is authenticated
+        this._authService.check().subscribe({
+            next: (value) => {
+                console.log('authenticated: %O', value);
+                this.isAuthenticated = value;
+            },
+            error: (err) => {
+                this._alertsService.showError('Error while checking authentication.','Errore');
+            },
+        });
     }
 
     /**

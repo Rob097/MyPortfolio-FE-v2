@@ -1,3 +1,11 @@
+# Serve microfrontends
+ - Angular cli 14.1.3
+ - Node 18.12.1
+ - npm 8.19.2
+ - commands:
+    - ng serve fuse -o --host=127.0.0.1
+    - ng serve auth-mfe -o --host=127.0.0.1
+
 # Firebase deploy
 This project is deployed and hosted in my personal firebase account.
 I've created a new Project called MyPortfolioV2 and inside I've created two sites: auth-mfe and fuse

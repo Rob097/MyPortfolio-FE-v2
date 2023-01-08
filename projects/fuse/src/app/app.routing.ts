@@ -38,13 +38,16 @@ export const appRoutes: Route[] = [
 
     // Landing routes
     {
-        path: '',
+        path: 'home',
         component  : LayoutComponent,
-        data: {
-            layout: 'empty'
+        resolve    : {
+            initialData: InitialDataResolver,
         },
+        // data: {
+        //     layout: 'classy'
+        // },
         children   : [
-            {path: 'home', loadChildren: () => import('projects/fuse/src/app/modules/landing/home/home.module').then(m => m.LandingHomeModule)},
+            {path: '', loadChildren: () => import('projects/fuse/src/app/modules/landing/home/home.module').then(m => m.LandingHomeModule)},
         ]
     },
 

@@ -4,7 +4,7 @@ import { isDevMode } from '@angular/core';
 
 export class Constants {
 
-    public static DOMAIN: string = (this.isInDevMode()) ? 'https://myportfolio-backend.it' : 'http://localhost:8083';
+    public static DOMAIN: string = (this.isInDevMode()) ? 'https://myportfolio-backend.it' : 'https://localhost:8443';
     public static AUTH_API = this.DOMAIN + '/api/auth';
     public static CORE_API = this.DOMAIN + '/api/core';
 

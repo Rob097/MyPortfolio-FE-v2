@@ -1,9 +1,34 @@
-#landing-image {
-    background-image: url('../../../../assets/images/home3.jpeg');
-    background-size: cover;
-    background-position: center;
-    border-radius: 1rem;
-    width: 75%;
-    height: 75%;
-    margin: 10% 5%;
+.h-full-header{
+    min-height: calc(100vh - 64px) !important;
+}
+section{
+    @extend .h-full-header;
+    display: flow-root;
+}
+
+#rocket-container{
+    position: relative;
+    margin: auto;
+    z-index: 1;
+}
+#phrase {
+    margin-bottom: 10px;
+    transition: all 1s ease-in-out;
+    opacity: 1;
+}
+#rocket {
+    width: 20%;
+    margin: auto;
+    transition: all 0.5s ease-in-out;
+    z-index: 1;
+    position: relative;
+    top: 0;
+    opacity: 1;
+}
+#rocket.clicked {
+    transition: all 3s ease-in-out;
+  }
+#rocket:hover {
+    bottom: -20px;
+    width: 25%;
 }

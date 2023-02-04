@@ -1,105 +1,169 @@
-<!-- <div class="flex flex-col items-center justify-center w-full h-full">
-    <div class="w-full max-w-3xl">
-        <div class="max-w-none mx-auto prose prose-sm">
+<div #home class="absolute overflow-y-auto inset-0">
+  <!-- Section: Design Block -->
+  <section style="background-color: #6d1e2f;">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 320"
+      preserveAspectRatio="none"
+      class="svg absolute hidden md:block"
+      style="height: calc(100vh - 64px); width: 100%; z-index: 0; overflow: hidden"
+    >
+      <defs>
+        <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
+          <stop stop-color="hsla(29, 73%, 68%, 1)" offset="0%"></stop>
+          <stop stop-color="hsla(40, 96%, 91%, 1)" offset="100%"></stop>
+        </linearGradient>
+      </defs>
+      <path
+        fill="url(#sw-gradient-0)"
+        d="M 0.351 264.418 C 0.351 264.418 33.396 268.165 47.112 270.128 C 265.033 301.319 477.487 325.608 614.827 237.124 C 713.575 173.504 692.613 144.116 805.776 87.876 C 942.649 19.853 1317.845 20.149 1440.003 23.965 C 1466.069 24.779 1440.135 24.024 1440.135 24.024 L 1440 0 L 1360 0 C 1280 0 1120 0 960 0 C 800 0 640 0 480 0 C 320 0 160 0 80 0 L 0 0 L 0.351 264.418 Z"
+      ></path>
+    </svg>
+
+    <div class="px-6 md:px-12 text-gray-800 text-center md:text-left" style="z-index: 0; position: relative;">
+      <div class="container mx-auto xl:px-32">
+        <div class="grid md:grid-cols-3 gap-8 flex items-center">
+
+          <div class="mt-12 md:mt-0 imd:col-span-2">
+            <h1 class="mat-display-4 text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12 w-max imd:mx-auto">
+                My Portfolio <br />
+                <span class="text-primary">tell your </span>
+                <ngtypewriter class="text-primary" [StringList]='list' [speed]='1000'></ngtypewriter>
+            </h1>
+            <a class="inline-block px-7 py-3 mr-2 bg-primary text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-primary hover:shadow-lg focus:bg-primary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Get started</a>
+            <a class="inline-block px-7 py-3 bg-transparent text-primary font-medium text-sm leading-snug uppercase rounded hover:text-primary hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Learn more</a>
+          </div>
+
+          <div class="mb-12 md:mb-0 col-span-2">
             <img
-                class="w-20"
-                src="assets/images/logo/logo.svg"
-                alt="Logo image">
-            <h1>Landing Module</h1>
-            <p>
-                This can be the landing or the welcome page of your application. If you have an SSR (Server Side Rendering) setup, or if you don't need to have Search engine
-                visibility and optimizations, you can even use this page as your primary landing page.
-            </p>
-            <p>
-                This is a separate "module", it has its own directory and routing setup and also it's completely separated from the actual application. This is also a simple example of
-                a multiple applications setup that uses the same codebase. You can have different entry points and essentially have different applications within the same codebase.
-            </p>
+              src="../../../../assets/images/home3-removebg.png"
+              class=""
+              style="width:83% !important; margin: auto;"
+              alt=""
+            />
+          </div>
+
         </div>
-        <div>
-            <a
-                class="mt-8"
-                mat-flat-button
-                [color]="'primary'"
-                [routerLink]="'/dashboards/project'">
-                <span>Launch the App</span>
-                <mat-icon
-                    class="ml-2 icon-size-5"
-                    [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
-            </a>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->
+
+  <section style="background: linear-gradient(0deg, rgba(234,238,239,1) 75%, rgba(109,30,47,1) 100%)">
+    <div class="px-6 mt-12 md:px-12 text-gray-800 text-center md:text-left" style="z-index: 1; position: relative;">
+        <div class="container mx-auto xl:px-32">
+            <div class="grid md:grid-cols-3 gap-8 flex items-start">
+                <fuse-card class="flex flex-col px-8 py-6" #whatIsItCard>
+                    <div class="text-xl font-bold text-center">Di cosa si tratta</div>
+                    <button mat-button class="px-3" [color]="'primary'" (click)="whatIsItCard.expanded = !whatIsItCard.expanded">
+                        <mat-icon class="icon-size-5"
+                            [svgIcon]="!whatIsItCard.expanded ? 'heroicons_solid:chevron-down' : 'heroicons_solid:chevron-up'"></mat-icon>
+                    </button>
+                    <ng-container fuseCardExpansion>
+                        <div class="mt-2">
+                            My Portfolio è un sito web dove poter raccontare la propria storia lavorativa e non solo. Qui potrai
+                            raccontare con delle vere e proprie storie i tuoi progetti e le tue esperienze lavorative.
+                            MyPortfolio è una community per chi vuole vedere oltre il semplice progetto finito o la semplice
+                            assunzione. Per chi vuole conoscere la storia.
+                        </div>
+                    </ng-container>
+                </fuse-card>
+                <fuse-card class="flex flex-col px-8 py-6" #whatRapresentsCard>
+                    <div class="text-xl font-bold text-center">Cosa rappresenta</div>
+                    <button mat-button class="px-3" [color]="'primary'"
+                        (click)="whatRapresentsCard.expanded = !whatRapresentsCard.expanded">
+                        <mat-icon class="icon-size-5"
+                            [svgIcon]="!whatRapresentsCard.expanded ? 'heroicons_solid:chevron-down' : 'heroicons_solid:chevron-up'"></mat-icon>
+                    </button>
+                    <ng-container fuseCardExpansion>
+                        <div class="mt-2">
+                            Questo progetto rappresenta un idea nata durante gli anni di poter avere un luogo dove poter leggere le idee
+                            delle persone e dover poter raccontare le proprie idee, i propri progetti e i propri obiettivi.
+                        </div>
+                    </ng-container>
+                </fuse-card>
+                <fuse-card class="flex flex-col px-8 py-6" #forWhoIsItCard>
+                    <div class="text-xl font-bold text-center">Per chi è</div>
+                    <button mat-button class="px-3" [color]="'primary'"
+                        (click)="forWhoIsItCard.expanded = !forWhoIsItCard.expanded">
+                        <mat-icon class="icon-size-5"
+                            [svgIcon]="!forWhoIsItCard.expanded ? 'heroicons_solid:chevron-down' : 'heroicons_solid:chevron-up'"></mat-icon>
+                    </button>
+                    <ng-container fuseCardExpansion>
+                        <div class="mt-2">
+                            MyPortfolio è una community aperta a tutti coloro che sono interessati ai processi evolutivi di un progetto o di
+                            una carriera. Per coloro che vogliono sapere tutta la storia e non solo il finale. Per coloro che vogliono
+                            raccontarsi.
+                        </div>
+                    </ng-container>
+                </fuse-card>
+            </div>
         </div>
     </div>
+
+    <div style="z-index: 1; position: relative;">
+        <div class="mt-24 text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight text-center">
+            Most frequently asked questions</div>
+        <div class="mt-2 text-xl text-center text-secondary">
+            Here are the most frequently asked questions you may check before getting started
+        </div>
+        <mat-accordion class="max-w-4xl block mx-auto mt-12">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header class="h-14">
+                    <mat-panel-title>
+                        This is the expansion title
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>
+                    Et in lorem qui ipsum deserunt duis exercitation lorem elit qui qui ipsum tempor nulla velit aliquip enim consequat
+                    incididunt pariatur duis excepteur elit irure nulla ipsum dolor dolore est. Aute deserunt nostrud id non ipsum do
+                    adipisicing laboris in minim officia magna elit minim mollit elit velit veniam lorem pariatur veniam sit excepteur
+                    irure commodo excepteur duis quis in.
+                </p>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header class="h-14">
+                    <mat-panel-title>
+                        Self aware panel
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p>This is the primary content of the panel.</p>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <div id="rocket-container" class="w-fit mt-12">
+        <fuse-card id="phrase" class="block mx-auto p-4 w-fit">
+            <div class="text-xl font-bold text-center text-primary">I'm ready to start my journey!</div>
+        </fuse-card>
+        <img id="rocket" src="../../../../assets/images/rocket.png" alt="Rocket">
+    </div>
+
+    <div style="position: relative;">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          preserveAspectRatio="none"
+          class="svg absolute hidden md:block bottom-0"
+          style="height: calc(100vh - 64px); width: 100%; z-index: 0; overflow: hidden; transform: scale(-1);"
+        >
+          <defs>
+            <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
+              <stop stop-color="hsla(29, 73%, 68%, 1)" offset="0%"></stop>
+              <stop stop-color="hsla(40, 96%, 91%, 1)" offset="100%"></stop>
+            </linearGradient>
+          </defs>
+          <path
+            fill="url(#sw-gradient-0)"
+            d="M 0.351 264.418 C 0.351 264.418 33.396 268.165 47.112 270.128 C 265.033 301.319 477.487 325.608 614.827 237.124 C 713.575 173.504 692.613 144.116 805.776 87.876 C 942.649 19.853 1317.845 20.149 1440.003 23.965 C 1466.069 24.779 1440.135 24.024 1440.135 24.024 L 1440 0 L 1360 0 C 1280 0 1120 0 960 0 C 800 0 640 0 480 0 C 320 0 160 0 80 0 L 0 0 L 0.351 264.418 Z"
+          ></path>
+        </svg>
+    </div>
+
+  </section>
+
 </div>
-<br/>-->
-<div style="height: calc(100vh - 64px); width: 100%; background-color: #e9ad70;">
-    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6 w-full min-w-0 h-full">
-        <div class="flex flex-col flex-auto items-center justify-center">
-            <h1 class="mat-display-4">My Portfolio</h1>
-            <p>Tell your story</p>
-        </div>
-        <div class="flex flex-col flex-auto landing-image">
-            <div id="landing-image"></div>
-        </div>
-    </div>
-    <div style="width: 100%; position: absolute; bottom: 0;">
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff5500" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg> -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fdc476" fill-opacity="1" d="M0,160L48,170.7C96,181,192,203,288,181.3C384,160,480,96,576,85.3C672,75,768,117,864,154.7C960,192,1056,224,1152,197.3C1248,171,1344,85,1392,42.7L1440,0L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-    </div>
-</div>
 
-
-
-<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-
-<!--<header class="header">
-    <h1>Logo</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Projects</a>
-      <a href="#">Contact</a>
-    </nav>
-</header>
-
-<div class="hero">
-    <h1>Welcome to Our Website</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    <a href="#">Learn More</a>
-</div>
-
-<div class="section">
-    <h2>Our Projects</h2>
-    <div class="card">
-        <img src="project1.jpg" alt="project 1">
-        <h3>Project 1</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tincidunt justo velit, eu viverra massa convallis at.</p>
-        <a href="#">Learn More</a>
-    </div>
-    <div class="card">
-        <img src="project2.jpg" alt="project 2">
-        <h3>Project 2</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tincidunt justo velit, eu viverra massa convallis at.</p>
-        <a href="#">Learn More</a>
-    </div>
-    <div class="card">
-        <img src="project3.jpg" alt="project 3">
-        <h3>Project 3</h3>
-        <p>Lorem ipsum dolor sit</p>
-        <a href="#">Learn More</a>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <div class="left">
-      <img src="logo.png" alt="logo">
-      <h4>Company Name</h4>
-    </div>
-    <div class="right">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Projects</a>
-      <a href="#">Contact</a>
-    </div>
-  </footer>-->
 

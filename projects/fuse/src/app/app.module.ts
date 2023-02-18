@@ -17,7 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
-    scrollPositionRestoration: 'enabled'
+    scrollPositionRestoration: 'enabled',
+    anchorScrolling: 'enabled'
 };
 
 @NgModule({

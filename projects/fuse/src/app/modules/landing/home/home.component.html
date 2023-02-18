@@ -31,8 +31,8 @@
                 <span class="text-primary">tell your </span>
                 <ngtypewriter class="text-primary" [StringList]='list' [speed]='1000'></ngtypewriter>
             </h1>
-            <a class="inline-block px-7 py-3 mr-2 bg-primary text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-primary hover:shadow-lg focus:bg-primary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Get started</a>
-            <a class="inline-block px-7 py-3 bg-transparent text-primary font-medium text-sm leading-snug uppercase rounded hover:text-primary hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="#!" role="button">Learn more</a>
+            <a class="inline-block px-7 py-3 mr-2 bg-primary text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-primary hover:shadow-lg focus:bg-primary focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary active:shadow-lg transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" href="{{signUpLink}}" role="button">Get started</a>
+            <a class="inline-block px-7 py-3 bg-transparent text-primary font-medium text-sm leading-snug uppercase rounded hover:text-primary hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="light" role="button" (click)="learnMoreClick()">Learn more</a>
           </div>
 
           <div class="mb-12 md:mb-0 col-span-2">
@@ -51,7 +51,9 @@
   <!-- Section: Design Block -->
 
   <section style="background: linear-gradient(0deg, rgba(234,238,239,1) 75%, rgba(109,30,47,1) 100%)">
-    <div class="px-6 mt-12 md:px-12 text-gray-800 text-center md:text-left" style="z-index: 1; position: relative;">
+
+    <!-- Section: Learn More -->
+    <div #learnMore id="learnMore" class="px-6 mt-12 md:px-12 text-gray-800 text-center md:text-left" style="z-index: 1; position: relative;">
         <div class="container mx-auto xl:px-32">
             <div class="grid md:grid-cols-3 gap-8 flex items-start">
                 <fuse-card class="flex flex-col px-8 py-6" #whatIsItCard>
@@ -101,7 +103,9 @@
             </div>
         </div>
     </div>
+    <!-- Section: Learn More -->
 
+    <!-- Section: FAQ -->
     <div style="z-index: 1; position: relative;">
         <div class="mt-24 text-3xl sm:text-5xl font-extrabold leading-tight tracking-tight text-center">
             Most frequently asked questions</div>
@@ -112,33 +116,36 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="h-14">
                     <mat-panel-title>
-                        This is the expansion title
+                        Quanto costa?
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <p>
-                    Et in lorem qui ipsum deserunt duis exercitation lorem elit qui qui ipsum tempor nulla velit aliquip enim consequat
-                    incididunt pariatur duis excepteur elit irure nulla ipsum dolor dolore est. Aute deserunt nostrud id non ipsum do
-                    adipisicing laboris in minim officia magna elit minim mollit elit velit veniam lorem pariatur veniam sit excepteur
-                    irure commodo excepteur duis quis in.
+                    MyPortfolio è un progetto completamente gratuito.
                 </p>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="h-14">
                     <mat-panel-title>
-                        Self aware panel
+                        Che tecnologie sono state usate per realizzare questo progetto?
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>This is the primary content of the panel.</p>
+                <p>MyPortfolio è stato creato con un'architettura a microservizi sia per la parte di BE sia per il FE (microfrontend).
+                    La parte di BE è stata sviluppata con Java SpringBoot ed è deployata all'interno di un container docker.
+                    La parte FE (ModuleFederation) è invece stata sviluppata in angular ed è ospitata su FireBase.
+                </p>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
+    <!-- Section: FAQ -->
 
+    <!-- Section: Rocket -->
     <div id="rocket-container" class="w-fit mt-12">
-        <fuse-card id="phrase" class="block mx-auto p-4 w-fit">
+        <fuse-card id="phrase" class="block mx-auto p-4 w-fit"  (click)="rocketAnimation(router,signUpLink)">
             <div class="text-xl font-bold text-center text-primary">I'm ready to start my journey!</div>
         </fuse-card>
-        <img id="rocket" src="../../../../assets/images/rocket.png" alt="Rocket">
+        <img id="rocket" src="../../../../assets/images/rocket.png" alt="Rocket" (click)="rocketAnimation(router,signUpLink)">
     </div>
+    <!-- Section: Rocket -->
 
     <div style="position: relative;">
         <svg
@@ -161,6 +168,8 @@
           ></path>
         </svg>
     </div>
+
+    <div id="overlay"></div>
 
   </section>
 

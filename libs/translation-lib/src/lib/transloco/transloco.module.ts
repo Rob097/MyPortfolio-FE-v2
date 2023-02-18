@@ -34,8 +34,8 @@ export class ProdCheckComponent {
                         label: 'English'
                     },
                     {
-                        id   : 'tr',
-                        label: 'Turkish'
+                        id   : 'it',
+                        label: 'Italiano'
                     }
                 ],
                 defaultLang         : 'en',

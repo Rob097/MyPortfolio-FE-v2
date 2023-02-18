@@ -39,6 +39,8 @@ export class LanguagesComponent implements OnInit, OnDestroy
         // Get the available languages from transloco
         this.availableLangs = this._translocoService.getAvailableLangs();
 
+        this._loadLocalStorage();
+
         // Subscribe to language changes
         this._translocoService.langChanges$.subscribe((activeLang) => {
 
@@ -47,12 +49,15 @@ export class LanguagesComponent implements OnInit, OnDestroy
 
             // Update the navigation
             this._updateNavigation(activeLang);
+
+            // Update localStorage
+            this._updateLocalStorage(activeLang);
         });
 
         // Set the country iso codes for languages for flags
         this.flagCodes = {
             'en': 'us',
-            'tr': 'tr'
+            'it': 'it'
         };
     }
 
@@ -148,6 +153,18 @@ export class LanguagesComponent implements OnInit, OnDestroy
                     // Refresh the navigation component
                     navComponent.refresh();
                 });
+        }
+    }
+
+    private _loadLocalStorage(): void{
+        if(localStorage.getItem('lang')){
+            this.setActiveLang(localStorage.getItem('lang'));
+        }
+    }
+
+    private _updateLocalStorage(lang: string): void{
+        if(lang){
+            localStorage.setItem('lang', lang);
         }
     }
 }

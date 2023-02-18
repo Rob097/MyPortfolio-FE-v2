@@ -1,0 +1,12 @@
+{
+    "welcome-back": "Bentornato",
+    "Project": "Progetto",
+    "Analytics": "Analytics",
+    "sign-in": "Fai il login",
+    "home-page": {
+        "tell-your": "Racconta le tue <br/>",
+        "stories": "storie",
+        "experiences": "esperienze",
+        "projects": "creazioni"
+    }
+}

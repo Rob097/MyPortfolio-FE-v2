@@ -2,5 +2,12 @@
     "welcome-back": "Welcome back",
     "Project": "Project",
     "Analytics": "Analytics",
-    "sign-in": "Fai il login"
+    "sign-in": "Sign In",
+
+    "home-page": {
+        "tell-your": "Tell your ",
+        "stories": "stories",
+        "experiences": "experiences",
+        "projects": "projects"
+    }
 }

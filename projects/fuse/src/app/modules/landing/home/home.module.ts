@@ -8,6 +8,7 @@ import { landingHomeRoutes } from 'projects/fuse/src/app/modules/landing/home/ho
 import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
 import { FuseCardModule } from 'libs/fuse-lib/src/lib/components/card';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { TranslocoCoreModule } from 'translation-lib';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
         SharedModule,
         AngularTypewriterEffectModule,
         FuseCardModule,
-        MatExpansionModule
+        MatExpansionModule,
+        TranslocoCoreModule
     ]
 })
 export class LandingHomeModule

@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
-import { AngularTypewriterEffectModule } from 'angular-typewriter-effect';
 import _ from 'lodash';
 import { filter, Subject, takeUntil } from 'rxjs';
 @Component({
@@ -12,7 +11,6 @@ import { filter, Subject, takeUntil } from 'rxjs';
 export class LandingHomeComponent implements OnInit, OnDestroy {
 
     destroyed$ = new Subject<void>();
-
     heroWords: string[] = [];
     signUpLink = 'auth/sign-up';
 
@@ -27,13 +25,14 @@ export class LandingHomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        // Causa problemi con gli anchor html, serve gestire lo scroll alle sezioni a mano
         this.route.fragment.subscribe(f => {
             const element = document.querySelector("#" + f)
             if (element) element.scrollIntoView({behavior: 'smooth'})
         });
 
+        // Aggiornamento traduzione lista parole hero section
         this.translocoService.langChanges$.pipe(takeUntil(this.destroyed$)).subscribe((res) => {
-            // If the file is empty that means no data found in cache and needs to wait for the data to be loaded successfully
             if (_.isEmpty(this.translocoService.getTranslation(res))) {
                 this.translocoService.events$
                     .pipe(

@@ -3,6 +3,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco.http-loader';
 import { isDevMode } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 // Function used to check if we are in production.
 // Wait 2 seconds in order to let enableProduction to be called.
@@ -56,7 +57,7 @@ export class ProdCheckComponent {
             useFactory: (translocoService: TranslocoService): any => (): Promise<Translation> => {
                 const defaultLang = translocoService.getDefaultLang();
                 translocoService.setActiveLang(defaultLang);
-                return translocoService.load(defaultLang).toPromise();
+                return firstValueFrom(translocoService.load(defaultLang));
             },
             multi     : true
         }

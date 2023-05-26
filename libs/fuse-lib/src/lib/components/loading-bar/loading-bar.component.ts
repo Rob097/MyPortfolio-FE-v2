@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject, takeUntil } from 'rxjs';
 import { FuseLoadingService } from 'libs/fuse-lib/src/lib/services/loading';
@@ -10,7 +10,7 @@ import { FuseLoadingService } from 'libs/fuse-lib/src/lib/services/loading';
     encapsulation: ViewEncapsulation.None,
     exportAs     : 'fuseLoadingBar'
 })
-export class FuseLoadingBarComponent implements OnChanges, OnInit, OnDestroy
+export class FuseLoadingBarComponent implements OnChanges, AfterViewInit, OnDestroy
 {
     @Input() autoMode: boolean = true;
     mode: 'determinate' | 'indeterminate';
@@ -47,27 +47,28 @@ export class FuseLoadingBarComponent implements OnChanges, OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
+    ngAfterViewInit(): void
     {
-        // Subscribe to the service
-        this._fuseLoadingService.mode$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((value) => {
-                this.mode = value;
-            });
+        setTimeout(() => {
+            // Subscribe to the service
+            this._fuseLoadingService.mode$
+                .pipe(takeUntil(this._unsubscribeAll))
+                .subscribe((value) => {
+                    this.mode = value;
+                });
 
-        this._fuseLoadingService.progress$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((value) => {
-                this.progress = value;
-            });
+            this._fuseLoadingService.progress$
+                .pipe(takeUntil(this._unsubscribeAll))
+                .subscribe((value) => {
+                    this.progress = value;
+                });
 
-        this._fuseLoadingService.show$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((value) => {
-                this.show = value;
-            });
-
+            this._fuseLoadingService.show$
+                .pipe(takeUntil(this._unsubscribeAll))
+                .subscribe((value) => {
+                    this.show = value;
+                });
+        }, 0);
     }
 
     /**

@@ -69,8 +69,8 @@ export const appRoutes: Route[] = [
     // React routes
     {
         path: '',
-        // canActivate: [AuthGuard],
-        // canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
         component: LayoutComponent, 
         children: [
             { 

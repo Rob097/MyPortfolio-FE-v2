@@ -128,20 +128,22 @@ export class FuseNavigationService
      */
     getItem(id: string, navigation: FuseNavigationItem[]): FuseNavigationItem | null
     {
-        for ( const item of navigation )
-        {
-            if ( item.id === id )
+        if(navigation){
+            for ( const item of navigation )
             {
-                return item;
-            }
-
-            if ( item.children )
-            {
-                const childItem = this.getItem(id, item.children);
-
-                if ( childItem )
+                if ( item.id === id )
                 {
-                    return childItem;
+                    return item;
+                }
+
+                if ( item.children )
+                {
+                    const childItem = this.getItem(id, item.children);
+
+                    if ( childItem )
+                    {
+                        return childItem;
+                    }
                 }
             }
         }

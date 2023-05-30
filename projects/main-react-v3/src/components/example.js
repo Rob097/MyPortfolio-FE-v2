@@ -27,6 +27,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { useTranslation } from 'react-i18next';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -47,7 +48,13 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguageHandler = () =>
+     {
+       i18n.changeLanguage("it")
+     }
 
   return (
     <>
@@ -269,6 +276,7 @@ export default function Example() {
             <div className="py-6">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+                <h1 onClick={changeLanguageHandler}>{t('welcome-back')}</h1>
               </div>
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Replace with your content */}

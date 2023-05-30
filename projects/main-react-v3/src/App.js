@@ -3,6 +3,7 @@ import {createRoot} from 'react-dom/client';
 
 import "./index.scss";
 import Example from "./components/example";
+import '../i18n';
 
 class App extends React.Component {
 

@@ -165,6 +165,7 @@ export class LanguagesComponent implements OnInit, OnDestroy
     private _updateLocalStorage(lang: string): void{
         if(lang){
             localStorage.setItem('lang', lang);
+            window.dispatchEvent(new Event('lang'));
         }
     }
 }

@@ -6,4 +6,4 @@ export * from './lib/auth.service';
 export * from './lib/user.service';
 export * from './lib/guards/auth.guard';
 export * from './lib/guards/noAuth.guard';
-export * from './lib/auth.utils';
+export * as AuthUtils from './lib/auth.utils';

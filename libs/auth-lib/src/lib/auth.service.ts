@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Constants } from 'common-lib';
 import { catchError, Observable, of, switchMap } from 'rxjs';
-import { AuthUtils } from './auth.utils';
+import decodeToken, { isTokenExpired } from './auth.utils';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -72,7 +72,7 @@ export class AuthService {
         this.accessToken = response?.token;
 
         // Store the user on the user service
-        return this._userService.getByEmail(AuthUtils.decodeToken(this.accessToken).sub).pipe(
+        return this._userService.getByEmail(decodeToken(this.accessToken).sub).pipe(
           switchMap((userResponse: any) => {
             this._userService.user = userResponse.content[0];
             this._authenticated = true;
@@ -90,7 +90,7 @@ export class AuthService {
    * Sign in using the access token
    */
   signInUsingToken(): Observable<any> {
-    return this._userService.getByEmail(AuthUtils.decodeToken(this.accessToken).sub).pipe(
+    return this._userService.getByEmail(decodeToken(this.accessToken).sub).pipe(
       switchMap((userResponse: any) => {
         this._userService.user = userResponse.content[0];
         this._authenticated = true;
@@ -149,7 +149,7 @@ export class AuthService {
     }
 
     // Check the access token expire date
-    if (AuthUtils.isTokenExpired(this.accessToken)) {
+    if (isTokenExpired(this.accessToken)) {
       return of(false);
     }
 

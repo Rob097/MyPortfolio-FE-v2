@@ -12,7 +12,7 @@
   }
   ```
 */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
@@ -28,6 +28,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { useTranslation } from 'react-i18next';
+import myAuthUtilsComponent from '../Auth/AuthUtils';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -50,6 +51,10 @@ function classNames(...classes) {
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    myAuthUtilsComponent();
+  }, []);
 
   const changeLanguageHandler = () =>
      {

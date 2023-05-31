@@ -54,25 +54,15 @@ export const appRoutes: Route[] = [
 
     // Admin routes
     {
-        path: 'admin',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
+        path: '',
+        // canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
         component: LayoutComponent,
         resolve: {
             initialData: InitialDataResolver,
         },
         children: [
             { path: 'example', loadChildren: () => import('projects/fuse/src/app/modules/admin/example/example.module').then(m => m.ExampleModule) },
-        ]
-    },
-
-    // React routes
-    {
-        path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
-        component: LayoutComponent, 
-        children: [
             { 
                 path: 'main', 
                 component: WrapperComponent, 
